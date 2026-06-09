@@ -1,0 +1,22 @@
+{
+  "name": "vaxa-fumigaciones",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de VAXA Fumigaciones — control de plagas, limpieza de tanques y análisis de agua en CABA y GBA.",
+  "scripts": {
+    "dev": "node tools/server.js",
+    "start": "node tools/server.js",
+    "preview": "node tools/server.js"
+  },
+  "keywords": [
+    "fumigacion",
+    "control-de-plagas",
+    "limpieza-de-tanques",
+    "analisis-de-agua",
+    "CABA",
+    "GBA",
+    "landing-page"
+  ],
+  "author": "VAXA Fumigaciones",
+  "license": "UNLICENSED"
+}

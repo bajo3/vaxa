@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# fuentes / backups de la conversión (no versionar)
+_extracted_source.html
+*.BACKUP.html
+*.BACKUP2.html
