@@ -36,6 +36,33 @@
 </head>
 <body>
 
+<!-- ============ LOADER (precarga + temática fumigación) ============ -->
+<div id="vaxa-loader" role="status" aria-label="Cargando VAXA Fumigaciones">
+  <div class="vl-inner">
+    <div class="vl-scene" aria-hidden="true">
+      <span class="vl-mist vl-m1"></span><span class="vl-mist vl-m2"></span><span class="vl-mist vl-m3"></span>
+      <span class="vl-mist vl-m4"></span><span class="vl-mist vl-m5"></span>
+      <svg class="vl-can" viewBox="0 0 120 120" fill="none">
+        <!-- nube de rociado -->
+        <g class="vl-spray">
+          <circle cx="92" cy="34" r="3.2"/><circle cx="103" cy="30" r="2.4"/>
+          <circle cx="101" cy="42" r="2.7"/><circle cx="110" cy="37" r="1.9"/>
+          <circle cx="96" cy="48" r="2"/>
+        </g>
+        <!-- lata de fumigación -->
+        <rect class="vl-body" x="34" y="44" width="38" height="58" rx="9"/>
+        <rect class="vl-label" x="40" y="60" width="26" height="26" rx="4"/>
+        <path class="vl-bug" d="M53 67c-2 0-3.4 1.6-3.4 3.8 0 2.6 1.6 4.7 3.4 6 1.8-1.3 3.4-3.4 3.4-6C56.4 68.6 55 67 53 67Z"/>
+        <path class="vl-bug-legs" d="M49.6 71h-3M49.6 74h-3.4M56.4 71h3M56.4 74h3.4"/>
+        <rect class="vl-cap" x="44" y="34" width="18" height="12" rx="3"/>
+        <path class="vl-nozzle" d="M62 38h9l5-4M71 42h7"/>
+      </svg>
+    </div>
+    <div class="vl-brand">VA<b>XA</b></div>
+    <div class="vl-text" id="vl-text">Preparando el control…</div>
+    <div class="vl-bar"><i id="vl-fill"></i></div>
+  </div>
+</div>
 
 
 <!-- ============ ICON SPRITE ============ -->
@@ -372,54 +399,6 @@
   </div>
 </section>
 
-<!-- ============ GALERÍA VISUAL ============ -->
-<section class="section gallery" id="galeria">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">En terreno</span>
-      <h2>Soluciones sanitarias para cada espacio</h2>
-      <p>Equipo, técnica y control en hogares, comercios, empresas y edificios de CABA y Gran Buenos Aires.</p>
-    </div>
-    <div class="gal-grid">
-      <div class="gal-item tall reveal">
-        <img class="gal-photo slot-img" src="assets/img/gal-1.webp" alt="Técnico fumigando — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Control de plagas</span>
-        <div class="gal-cap"><h4>Fumigación profesional</h4><p>Técnicos certificados con equipo profesional.</p></div>
-      </div>
-      <div class="gal-item reveal d1">
-        <img class="gal-photo slot-img" src="assets/img/gal-2.webp" alt="Control de cucarachas — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Plaga urbana</span>
-        <div class="gal-cap"><h4>Control de cucarachas</h4></div>
-      </div>
-      <div class="gal-item wide reveal d2">
-        <img class="gal-photo slot-img" src="assets/img/gal-3.webp" alt="Limpieza de tanque de agua — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Higiene hídrica</span>
-        <div class="gal-cap"><h4>Limpieza de tanques de agua</h4></div>
-      </div>
-      <div class="gal-item reveal d1">
-        <img class="gal-photo slot-img" src="assets/img/gal-4.webp" alt="Control de roedores — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Roedores</span>
-        <div class="gal-cap"><h4>Control de roedores</h4></div>
-      </div>
-      <div class="gal-item wide reveal">
-        <img class="gal-photo slot-img" src="assets/img/gal-5.webp" alt="Análisis en laboratorio — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Laboratorio</span>
-        <div class="gal-cap"><h4>Análisis de agua potable</h4></div>
-      </div>
-      <div class="gal-item reveal d2">
-        <img class="gal-photo slot-img" src="assets/img/gal-6.webp" alt="Edificios / consorcios — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Consorcios</span>
-        <div class="gal-cap"><h4>Edificios y consorcios</h4></div>
-      </div>
-      <div class="gal-item reveal d1">
-        <img class="gal-photo slot-img" src="assets/img/gal-7.webp" alt="Comercios / empresas — VAXA Fumigaciones" loading="lazy" decoding="async">
-        <span class="gal-tag">Empresas</span>
-        <div class="gal-cap"><h4>Comercios y empresas</h4></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ SELECTOR DE CLIENTE ============ -->
 <section class="section clients" id="clientes">
   <div class="wrap">
@@ -652,50 +631,124 @@
   </div>
 </section>
 
-<!-- ============ POR QUÉ VAXA ============ -->
-<section class="section why" id="porque">
+<!-- ============ CONTACTO POR MAIL ============ -->
+<section class="section mailsec" id="contacto">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Por qué elegir VAXA</span>
-      <h2>Control profesional en el que podés confiar</h2>
+    <div class="section-head center reveal">
+      <span class="eyebrow">¿Preferís mail?</span>
+      <h2>Escribinos por <span style="color:var(--green-bright)">correo</span></h2>
+      <p>Dejanos los datos y te respondemos a la brevedad.</p>
     </div>
-    <div class="why-grid">
-      <article class="why-card reveal">
-        <div class="why-num">01</div>
-        <div class="why-ico"><svg><use href="#i-team"></use></svg></div>
-        <h3>Atención profesional</h3>
-        <p>Equipo preparado para hogares, empresas, instituciones y consorcios.</p>
-      </article>
-      <article class="why-card reveal d1">
-        <div class="why-num">02</div>
-        <div class="why-ico"><svg><use href="#i-layers"></use></svg></div>
-        <h3>Soluciones integrales</h3>
-        <p>Fumigación, tanques, análisis de agua y prevención sanitaria.</p>
-      </article>
-      <article class="why-card reveal d2">
-        <div class="why-num">03</div>
-        <div class="why-ico"><svg><use href="#i-pin"></use></svg></div>
-        <h3>Cobertura en CABA y GBA</h3>
-        <p>Atención en Capital Federal y Gran Buenos Aires.</p>
-      </article>
-      <article class="why-card reveal">
-        <div class="why-num">04</div>
-        <div class="why-ico"><svg><use href="#i-fast"></use></svg></div>
-        <h3>Presupuesto rápido</h3>
-        <p>Consulta directa por WhatsApp con mensaje automático.</p>
-      </article>
-      <article class="why-card reveal d1">
-        <div class="why-num">05</div>
-        <div class="why-ico"><svg><use href="#i-building"></use></svg></div>
-        <h3>Servicios para administraciones</h3>
-        <p>Soluciones pensadas para edificios, consorcios y espacios comunes.</p>
-      </article>
-      <article class="why-card reveal d2">
-        <div class="why-num">06</div>
-        <div class="why-ico"><svg><use href="#i-wa"></use></svg></div>
-        <h3>Contacto inmediato</h3>
-        <p>Respuesta por WhatsApp. Sin formularios complicados ni demoras.</p>
-      </article>
+    <div class="mailform reveal d1">
+      <form class="mf-card" id="mail-form" novalidate>
+        <div class="mf-grid">
+          <div class="mf-field">
+            <label for="mf-nombre">Nombre <span class="req">*</span></label>
+            <input id="mf-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required>
+          </div>
+          <div class="mf-field">
+            <label for="mf-email">Email <span class="req">*</span></label>
+            <input id="mf-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required>
+          </div>
+          <div class="mf-field">
+            <label for="mf-tel">Teléfono</label>
+            <input id="mf-tel" name="telefono" type="tel" autocomplete="tel" placeholder="(opcional)">
+          </div>
+          <div class="mf-field">
+            <label for="mf-serv">Servicio</label>
+            <select id="mf-serv" name="servicio">
+              <option value="Consulta general">Consulta general</option>
+              <option value="Cucarachas">Cucarachas</option>
+              <option value="Ratas / roedores">Ratas / roedores</option>
+              <option value="Murciélagos">Murciélagos</option>
+              <option value="Mosquitos e insectos">Mosquitos e insectos</option>
+              <option value="Limpieza de tanque de agua">Limpieza de tanque de agua</option>
+              <option value="Análisis de agua">Análisis de agua</option>
+              <option value="Servicio para consorcio / edificio">Consorcio / edificio</option>
+            </select>
+          </div>
+          <div class="mf-field full">
+            <label for="mf-zona">Zona</label>
+            <input id="mf-zona" name="zona" type="text" placeholder="Ej: Caballito (CABA), San Isidro, Quilmes…">
+          </div>
+          <div class="mf-field full">
+            <label for="mf-msg">Mensaje <span class="req">*</span></label>
+            <textarea id="mf-msg" name="mensaje" placeholder="Contanos qué necesitás…" required></textarea>
+          </div>
+          <p class="mf-error" id="mf-error">Completá nombre, un email válido y el mensaje.</p>
+          <div class="mf-submit">
+            <button class="btn btn-wa btn-lg" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 6.5L21 6"/></svg> Enviar consulta por mail</button>
+            <span class="mf-note">Se abre tu app de correo con todo listo para enviar.</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section class="section testimonials" id="testimonios">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Lo que dicen nuestros clientes</span>
+      <h2>Confían en VAXA en toda <span style="color:var(--green-bright)">CABA y GBA</span></h2>
+      <div class="tst-rating reveal">
+        <span class="tst-stars" aria-hidden="true">★★★★★</span>
+        <span class="tst-rating-txt"><b>4,9 / 5</b> · basado en la experiencia de nuestros clientes</span>
+      </div>
+    </div>
+    <div class="tst-grid">
+      <figure class="tst-card reveal">
+        <span class="tst-stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Tuvimos una invasión de cucarachas en el edificio y lo resolvieron en una sola visita. Súper profesionales y puntuales. Volvimos a contratarlos para el mantenimiento.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-avatar" style="--c:oklch(0.6 0.15 160)">MC</span>
+          <span class="tst-meta"><b>María C.</b><span>Administradora de consorcio · Caballito, CABA</span></span>
+        </figcaption>
+      </figure>
+      <figure class="tst-card reveal d1">
+        <span class="tst-stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Llamé un sábado por ratas en el local y vinieron al toque. Trato excelente, me explicaron todo y me dieron garantía por escrito. Muy recomendables.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-avatar" style="--c:oklch(0.6 0.15 52)">DR</span>
+          <span class="tst-meta"><b>Diego R.</b><span>Dueño de comercio · Quilmes, GBA</span></span>
+        </figcaption>
+      </figure>
+      <figure class="tst-card reveal d2">
+        <span class="tst-stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Hicieron la limpieza y desinfección del tanque de casa y el análisis de agua. Quedó impecable y el informe llegó al día siguiente. Gente seria y prolija.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-avatar" style="--c:oklch(0.6 0.15 250)">LF</span>
+          <span class="tst-meta"><b>Laura F.</b><span>Hogar · San Isidro, GBA</span></span>
+        </figcaption>
+      </figure>
+      <figure class="tst-card reveal">
+        <span class="tst-stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Manejamos varios edificios y VAXA es nuestro proveedor de confianza para fumigación y tanques. Responden rápido por WhatsApp y cumplen los turnos.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-avatar" style="--c:oklch(0.6 0.15 300)">GS</span>
+          <span class="tst-meta"><b>Gustavo S.</b><span>Administración de edificios · CABA</span></span>
+        </figcaption>
+      </figure>
+      <figure class="tst-card reveal d1">
+        <span class="tst-stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Fumigaron la escuela en horario sin clases y con productos seguros. Cero olor al otro día. Nos dejaron todo el certificado para presentar. Excelente.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-avatar" style="--c:oklch(0.62 0.13 130)">PV</span>
+          <span class="tst-meta"><b>Patricia V.</b><span>Institución educativa · Morón, GBA</span></span>
+        </figcaption>
+      </figure>
+      <figure class="tst-card reveal d2">
+        <span class="tst-stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Presupuesto claro, sin sorpresas, y el servicio fue tal cual lo prometido. Me resolvieron mosquitos y hormigas en el jardín. Los recomiendo 100%.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-avatar" style="--c:oklch(0.6 0.16 30)">NB</span>
+          <span class="tst-meta"><b>Nicolás B.</b><span>Hogar · Pilar, GBA</span></span>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="tst-cta reveal">
+      <a class="btn btn-wa btn-lg" data-wa="un presupuesto" href="#"><svg><use href="#i-wa"></use></svg> Sumate a nuestros clientes — pedí presupuesto</a>
     </div>
   </div>
 </section>
@@ -782,6 +835,18 @@
   <span class="wa-txt">Consultá ahora</span>
 </a>
 
+<!-- ============ BARRA FIJA MOBILE (WhatsApp + Llamar) ============ -->
+<div class="mobile-cta" role="group" aria-label="Acciones rápidas">
+  <a class="mcta mcta-call" href="tel:+5492494621182" aria-label="Llamar a VAXA">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+    <span>Llamar</span>
+  </a>
+  <a class="mcta mcta-wa" data-wa="general" href="#" aria-label="Escribir por WhatsApp">
+    <svg><use href="#i-wa"></use></svg>
+    <span>WhatsApp</span>
+  </a>
+</div>
+
 <!-- ============ POPUP TEMPORADA ============ -->
 <div class="popup-overlay" id="popup">
   <div class="popup">
@@ -801,10 +866,12 @@
 
 
 <div id="vaxa-palette-dock" role="group" aria-label="Probar colores (demo)">
-  <div class="vpd-title"><svg class="vpd-cap-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.5 2 2 6 2 11c0 4 3 6 6 6 1 0 1.6-.6 1.6-1.4 0-.5-.3-.8-.6-1.1-.3-.3-.5-.6-.5-1 0-.8.7-1.4 1.5-1.4H12c3.3 0 6-2.5 6-5.6C18 4.9 15.6 2 12 2Z"/><circle cx="7" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="10" cy="6.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg> Probá los colores</div>
+  <div class="vpd-title"><svg class="vpd-cap-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.5 2 2 6 2 11c0 4 3 6 6 6 1 0 1.6-.6 1.6-1.4 0-.5-.3-.8-.6-1.1-.3-.3-.5-.6-.5-1 0-.8.7-1.4 1.5-1.4H12c3.3 0 6-2.5 6-5.6C18 4.9 15.6 2 12 2Z"/><circle cx="7" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="10" cy="6.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg><span class="vpd-title-text">Probá los colores</span><button type="button" id="vpd-toggle" class="vpd-toggle" aria-label="Minimizar selector de colores" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="vpd-row"><span class="vpd-cap">Color</span><div class="vpd-swatches"><button class="vpd-btn is-active" data-acc="emerald" data-label="Esmeralda" style="--sw:oklch(0.60 0.155 160)" aria-label="Esmeralda"></button><button class="vpd-btn" data-acc="ocean" data-label="Océano" style="--sw:oklch(0.60 0.15 232)" aria-label="Océano"></button><button class="vpd-btn" data-acc="copper" data-label="Cobre" style="--sw:oklch(0.66 0.16 52)" aria-label="Cobre"></button><button class="vpd-btn" data-acc="violet" data-label="Violeta" style="--sw:oklch(0.60 0.17 292)" aria-label="Violeta"></button><button class="vpd-btn" data-acc="teal" data-label="Turquesa" style="--sw:oklch(0.62 0.15 192)" aria-label="Turquesa"></button><button class="vpd-btn" data-acc="sky" data-label="Azul" style="--sw:oklch(0.58 0.16 250)" aria-label="Azul"></button><button class="vpd-btn" data-acc="amber" data-label="Ámbar" style="--sw:oklch(0.70 0.15 75)" aria-label="Ámbar"></button><button class="vpd-btn" data-acc="rose" data-label="Rosa" style="--sw:oklch(0.62 0.17 350)" aria-label="Rosa"></button><button class="vpd-btn" data-acc="crimson" data-label="Rojo" style="--sw:oklch(0.58 0.19 25)" aria-label="Rojo"></button><button class="vpd-btn" data-acc="slate" data-label="Gris" style="--sw:oklch(0.55 0.025 250)" aria-label="Gris"></button></div></div>
   <div class="vpd-row"><span class="vpd-cap">Fondo</span><div class="vpd-swatches"><button class="vpd-btn is-active" data-bg="verde" data-label="Verde" style="--sw:oklch(0.22 0.04 160)" aria-label="Verde"></button><button class="vpd-btn" data-bg="carbon" data-label="Carbón" style="--sw:oklch(0.24 0.012 250)" aria-label="Carbón"></button><button class="vpd-btn" data-bg="azul" data-label="Azul noche" style="--sw:oklch(0.22 0.06 255)" aria-label="Azul noche"></button><button class="vpd-btn" data-bg="negro" data-label="Negro" style="--sw:oklch(0.13 0.006 250)" aria-label="Negro"></button><button class="vpd-btn" data-bg="calido" data-label="Cálido" style="--sw:oklch(0.24 0.045 55)" aria-label="Cálido"></button></div></div>
 </div>
+<script src="js/loader.js" defer></script>
 <script src="js/interactions.js" defer></script>
 <script src="js/palette.js" defer></script>
+<script src="js/analytics.js" defer></script>
 </body></html>

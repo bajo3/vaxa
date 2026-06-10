@@ -1,0 +1,7 @@
+*.bak-redesign
+*.BACKUP.html
+*.BACKUP2.html
+.claude/
+design-system/
+tools/
+node_modules/

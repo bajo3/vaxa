@@ -45,25 +45,47 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---------- Mobile menu (burger) ---------- */
+  /* ---------- Mobile menu (burger) — full-screen ---------- */
   var burger = document.getElementById("burger");
   if (burger) {
+    var ITEMS = [
+      ["Problemas", "#diagnostico"], ["Servicios", "#servicios"],
+      ["Clientes", "#clientes"], ["Consorcios", "#consorcios"],
+      ["Cobertura", "#cobertura"], ["FAQ", "#faq"], ["Contacto", "#presupuesto"]
+    ];
+    var menu = document.createElement("div");
+    menu.id = "m-menu";
+    menu.className = "mnav";
+    menu.setAttribute("role", "dialog");
+    menu.setAttribute("aria-modal", "true");
+    menu.setAttribute("aria-label", "Menú de navegación");
+    var linksHtml = ITEMS.map(function (it) {
+      return '<a href="' + it[1] + '">' + it[0] + '</a>';
+    }).join("");
+    menu.innerHTML =
+      '<div class="mnav-top">' +
+        '<span class="mnav-brand">VA<b>XA</b> · Fumigaciones</span>' +
+        '<button class="mnav-close" id="mnav-close" aria-label="Cerrar menú"><svg><use href="#i-x"></use></svg></button>' +
+      '</div>' +
+      '<nav class="mnav-links">' + linksHtml + '</nav>' +
+      '<div class="mnav-cta"><a class="btn btn-wa" data-wa="general" href="#"><svg><use href="#i-wa"></use></svg> Pedir presupuesto</a></div>';
+    document.body.appendChild(menu);
+
+    function openMenu() { menu.classList.add("open"); document.body.classList.add("mnav-open"); burger.setAttribute("aria-expanded", "true"); }
+    function closeMenu() { menu.classList.remove("open"); document.body.classList.remove("mnav-open"); burger.setAttribute("aria-expanded", "false"); }
+
     burger.addEventListener("click", function () {
-      // simple anchor jump menu
-      var open = document.getElementById("m-menu");
-      if (open) { open.remove(); return; }
-      var menu = document.createElement("div");
-      menu.id = "m-menu";
-      menu.style.cssText = "position:fixed;top:76px;left:0;right:0;z-index:89;background:var(--surface-2);box-shadow:var(--shadow);padding:14px 28px 22px;display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--card-line);";
-      [["Problemas","#diagnostico"],["Servicios","#servicios"],["Clientes","#clientes"],["Consorcios","#consorcios"],["Cobertura","#cobertura"],["FAQ","#faq"],["Presupuesto","#presupuesto"]].forEach(function (it) {
-        var a = document.createElement("a");
-        a.href = it[1]; a.textContent = it[0];
-        a.style.cssText = "padding:12px 0;font-weight:600;font-family:var(--font-display);border-bottom:1px solid var(--card-line);color:var(--tx);";
-        a.addEventListener("click", function () { menu.remove(); });
-        menu.appendChild(a);
-      });
-      document.body.appendChild(menu);
+      menu.classList.contains("open") ? closeMenu() : openMenu();
     });
+    menu.querySelector("#mnav-close").addEventListener("click", closeMenu);
+    menu.querySelectorAll(".mnav-links a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+    });
+    // re-cablear el botón de WhatsApp que acabamos de inyectar
+    wireWa();
   }
 
   /* ---------- Reveal on scroll ---------- */
@@ -482,30 +504,84 @@
     if (!overlay) return;
     var closeBtn = document.getElementById("popup-close");
     var later = document.getElementById("popup-later");
-    function close() { overlay.classList.remove("show"); try { sessionStorage.setItem("vaxa_popup", "1"); } catch (e) {} }
+
+    // Línea de escaneo del hero: se dispara al cerrar el popup
+    // (para que se aprecie) y baja hasta el fondo del hero.
+    var scan = document.querySelector(".hero-scan");
+    var hero = document.getElementById("top");
+    function setScanEnd() {
+      if (scan && hero) scan.style.setProperty("--scan-end", (hero.clientHeight + 24) + "px");
+    }
+    setScanEnd();
+    window.addEventListener("resize", setScanEnd);
+    var scanned = false;
+    function runScan() {
+      if (scanned || !scan) return;
+      scanned = true;
+      setScanEnd();
+      scan.classList.remove("scan-run");
+      void scan.offsetWidth; // fuerza reinicio de la animación
+      scan.classList.add("scan-run");
+    }
+
+    function close() { overlay.classList.remove("show"); runScan(); }
     closeBtn.addEventListener("click", close);
     later.addEventListener("click", close);
     overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
     overlay.querySelectorAll("[data-wa]").forEach(function (a) { a.addEventListener("click", close); });
 
-    var seen = false;
-    try { seen = sessionStorage.getItem("vaxa_popup") === "1"; } catch (e) {}
-    if (!seen) {
-      setTimeout(function () { overlay.classList.add("show"); }, 1200);
-    }
+    // Se muestra en cada carga / recarga de la página.
+    setTimeout(function () { overlay.classList.add("show"); }, 1200);
   })();
 
   /* ============================================================
-     BICHOS CAMINANDO — capa global persistente
+     FORMULARIO DE CONTACTO POR MAIL (mailto)
+     ============================================================ */
+  (function mailForm() {
+    var form = document.getElementById("mail-form");
+    if (!form) return;
+    var err = document.getElementById("mf-error");
+    var TO = "felipelentini66@gmail.com";
+    function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+    function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var nombre = val("mf-nombre"), email = val("mf-email"), tel = val("mf-tel"),
+          serv = val("mf-serv"), zona = val("mf-zona"), msg = val("mf-msg");
+      if (!nombre || !validEmail(email) || !msg) {
+        if (err) err.classList.add("show");
+        return;
+      }
+      if (err) err.classList.remove("show");
+      var subject = "Consulta web VAXA — " + (serv || "Consulta general");
+      var body = [
+        "Nombre: " + nombre,
+        "Email: " + email,
+        tel ? "Teléfono: " + tel : "",
+        "Servicio: " + (serv || "—"),
+        zona ? "Zona: " + zona : "",
+        "",
+        "Mensaje:",
+        msg
+      ].filter(function (l) { return l !== ""; }).join("\n");
+      window.location.href = "mailto:" + TO +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+    });
+
+    ["mf-nombre", "mf-email", "mf-msg"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && err) el.addEventListener("input", function () { err.classList.remove("show"); });
+    });
+  })();
+
+  /* ============================================================
+     BICHOS CAMINANDO — dos capas: global (toda la web) + hero
      ============================================================ */
   (function bugs() {
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
-
-    var layer = document.createElement("div");
-    layer.className = "bug-layer";
-    layer.setAttribute("aria-hidden", "true");
-    document.body.appendChild(layer);
 
     // SVG de un bicho mirando hacia arriba (eje -Y)
     function bugSVG() {
@@ -532,73 +608,81 @@
     }
 
     var tints = [
-      "oklch(0.30 0.06 150)",  // verde oscuro
-      "oklch(0.28 0.04 60)",   // marrón cucaracha
-      "oklch(0.24 0.02 280)",  // casi negro azulado
-      "oklch(0.34 0.08 145)"   // verde
+      "oklch(0.52 0.10 152)",  // verde medio
+      "oklch(0.48 0.07 60)",   // marrón cucaracha claro
+      "oklch(0.46 0.05 280)",  // gris azulado
+      "oklch(0.56 0.11 150)"   // verde brillante
     ];
 
     function rand(a, b) { return a + Math.random() * (b - a); }
 
-    function makeBug() {
-      var el = document.createElement("div");
-      el.className = "bug";
-      el.innerHTML = bugSVG();
-      var scale = rand(0.45, 0.95);
-      el.style.color = tints[(Math.random() * tints.length) | 0];
-      el.style.opacity = rand(0.6, 0.9).toFixed(2);
-      layer.appendChild(el);
+    // Crea una capa de bichos en un host con sus propios límites (dims).
+    function spawnSystem(host, extraClass, dims, count) {
+      var layer = document.createElement("div");
+      layer.className = "bug-layer" + (extraClass ? " " + extraClass : "");
+      layer.setAttribute("aria-hidden", "true");
+      host.appendChild(layer);
 
-      var b = {
-        el: el,
-        s: scale,
-        x: 0, y: 0,
-        ang: rand(0, Math.PI * 2),
-        speed: rand(0.45, 1.25),
-        turn: 0,
-        steer: rand(-0.01, 0.01),
-        next: 0
-      };
-      // aparecer en un borde, dirección hacia adentro
-      spawnEdge(b);
-      return b;
-    }
-
-    function spawnEdge(b) {
-      var W = window.innerWidth, H = window.innerHeight;
-      var side = (Math.random() * 4) | 0;
-      if (side === 0) { b.x = rand(0, W); b.y = -40; b.ang = rand(Math.PI * 0.25, Math.PI * 0.75); }
-      else if (side === 1) { b.x = W + 40; b.y = rand(0, H); b.ang = rand(Math.PI * 0.75, Math.PI * 1.25); }
-      else if (side === 2) { b.x = rand(0, W); b.y = H + 40; b.ang = rand(Math.PI * 1.25, Math.PI * 1.75); }
-      else { b.x = -40; b.y = rand(0, H); b.ang = rand(-Math.PI * 0.25, Math.PI * 0.25); }
-    }
-
-    var count = window.innerWidth <= 760 ? 5 : 11;
-    var list = [];
-    for (var i = 0; i < count; i++) list.push(makeBug());
-
-    var t = 0, running = true;
-    function loop() {
-      if (!running) { requestAnimationFrame(loop); return; }
-      var W = window.innerWidth, H = window.innerHeight, m = 70;
-      t++;
-      for (var i = 0; i < list.length; i++) {
-        var b = list[i];
-        // cambio de rumbo ocasional (deambular)
-        if (t > b.next) { b.steer = rand(-0.025, 0.025); b.next = t + (rand(40, 140) | 0); }
-        b.ang += b.steer + Math.sin(t * 0.05 + i) * 0.004;
-        b.x += Math.cos(b.ang) * b.speed;
-        b.y += Math.sin(b.ang) * b.speed;
-        // reaparecer si sale de pantalla
-        if (b.x < -m || b.x > W + m || b.y < -m || b.y > H + m) spawnEdge(b);
-        var deg = b.ang * 180 / Math.PI + 90; // svg mira hacia -Y
-        b.el.style.transform = "translate3d(" + b.x.toFixed(1) + "px," + b.y.toFixed(1) + "px,0) rotate(" + deg.toFixed(1) + "deg) scale(" + b.s + ")";
+      function spawnEdge(b) {
+        var d = dims(), W = d.W, H = d.H;
+        var side = (Math.random() * 4) | 0;
+        if (side === 0) { b.x = rand(0, W); b.y = -40; b.ang = rand(Math.PI * 0.25, Math.PI * 0.75); }
+        else if (side === 1) { b.x = W + 40; b.y = rand(0, H); b.ang = rand(Math.PI * 0.75, Math.PI * 1.25); }
+        else if (side === 2) { b.x = rand(0, W); b.y = H + 40; b.ang = rand(Math.PI * 1.25, Math.PI * 1.75); }
+        else { b.x = -40; b.y = rand(0, H); b.ang = rand(-Math.PI * 0.25, Math.PI * 0.25); }
       }
+
+      function makeBug() {
+        var el = document.createElement("div");
+        el.className = "bug";
+        el.innerHTML = bugSVG();
+        el.style.color = tints[(Math.random() * tints.length) | 0];
+        el.style.opacity = rand(0.72, 1).toFixed(2);
+        layer.appendChild(el);
+        var b = { el: el, s: rand(0.45, 0.95), x: 0, y: 0, ang: rand(0, Math.PI * 2),
+                  speed: rand(0.45, 1.25), steer: rand(-0.01, 0.01), next: 0 };
+        spawnEdge(b);
+        return b;
+      }
+
+      var list = [];
+      for (var i = 0; i < count; i++) list.push(makeBug());
+
+      var t = 0, running = true;
+      function loop() {
+        if (!running) { requestAnimationFrame(loop); return; }
+        var d = dims(), W = d.W, H = d.H, m = 70;
+        t++;
+        for (var i = 0; i < list.length; i++) {
+          var b = list[i];
+          if (t > b.next) { b.steer = rand(-0.025, 0.025); b.next = t + (rand(40, 140) | 0); }
+          b.ang += b.steer + Math.sin(t * 0.05 + i) * 0.004;
+          b.x += Math.cos(b.ang) * b.speed;
+          b.y += Math.sin(b.ang) * b.speed;
+          if (b.x < -m || b.x > W + m || b.y < -m || b.y > H + m) spawnEdge(b);
+          var deg = b.ang * 180 / Math.PI + 90;
+          b.el.style.transform = "translate3d(" + b.x.toFixed(1) + "px," + b.y.toFixed(1) + "px,0) rotate(" + deg.toFixed(1) + "deg) scale(" + b.s + ")";
+        }
+        requestAnimationFrame(loop);
+      }
+      document.addEventListener("visibilitychange", function () { running = !document.hidden; });
       requestAnimationFrame(loop);
     }
-    // pausar cuando la pestaña no está visible
-    document.addEventListener("visibilitychange", function () { running = !document.hidden; });
-    requestAnimationFrame(loop);
+
+    var mobile = window.innerWidth <= 760;
+
+    // 1) Capa GLOBAL fija: bichos por toda la web, detrás del contenido.
+    spawnSystem(document.body, null,
+      function () { return { W: window.innerWidth, H: window.innerHeight }; },
+      mobile ? 5 : 11);
+
+    // 2) Capa del HERO: bichos también en el header, detrás del contenido.
+    var hero = document.getElementById("top");
+    if (hero) {
+      spawnSystem(hero, "bug-hero",
+        function () { return { W: hero.clientWidth || window.innerWidth, H: hero.clientHeight || window.innerHeight }; },
+        mobile ? 4 : 7);
+    }
   })();
 
 })();

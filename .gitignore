@@ -10,3 +10,5 @@ Thumbs.db
 _extracted_source.html
 *.BACKUP.html
 *.BACKUP2.html
+
+.vercel
