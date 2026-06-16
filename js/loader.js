@@ -1,5 +1,5 @@
 /* ============================================================
-   VAXA — Loader / precarga de imágenes con temática de fumigación
+   VAXA — Loader / precarga de imágenes con temática de control de plagas
    Muestra el cargando hasta que cargan las imágenes (o timeout),
    luego entra a la página con un fundido.
    ============================================================ */
@@ -15,7 +15,7 @@
   // bloquea el scroll mientras carga
   document.documentElement.classList.add("loading");
 
-  var phrases = ["Preparando el servicio…", "Fumigación y control de plagas…", "Limpieza y reparación de tanques…", "Casi listo…"];
+  var phrases = ["Preparando el servicio…", "Control de plagas…", "Limpieza y reparación de tanques…", "Casi listo…"];
   var pi = 0;
   var phraseTimer = setInterval(function () {
     pi = (pi + 1) % phrases.length;
