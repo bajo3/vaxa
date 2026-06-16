@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es" data-accent="emerald" data-bg="verde"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiénes somos | VAXA Fumigaciones</title>
+<meta name="description" content="VAXA Fumigaciones: especialistas en fumigación, control de plagas y mantenimiento integral de tanques de agua (limpieza, reparación e impermeabilización) en CABA y Gran Buenos Aires.">
+<meta name="keywords" content="quienes somos VAXA, empresa de fumigación CABA, mantenimiento de tanques de agua, control de plagas profesional">
+<meta property="og:title" content="Quiénes somos | VAXA Fumigaciones">
+<meta property="og:description" content="Especialistas en fumigación, control de plagas y mantenimiento integral de tanques de agua en CABA y Gran Buenos Aires.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap">
+<link rel="canonical" href="https://www.vaxafumigaciones.com/quienes-somos.html">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/redesign.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="theme-color" content="#11201a">
+<meta name="robots" content="index,follow">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="VAXA Fumigaciones">
+</head>
+<body>
+
+<!-- ============ LOADER (gota bicolor: fumigación + tanques) ============ -->
+<div id="vaxa-loader" role="status" aria-label="Cargando VAXA Fumigaciones">
+  <div class="vl-inner">
+    <div class="vl-scene" aria-hidden="true">
+      <svg class="vl-drop" viewBox="0 0 120 150" fill="none">
+        <defs>
+          <clipPath id="vd-clip"><path d="M60 4C78 34 102 66 102 96a42 42 0 0 1-84 0C18 66 42 34 60 4Z"/></clipPath>
+        </defs>
+        <path class="vd-outline" d="M60 4C78 34 102 66 102 96a42 42 0 0 1-84 0C18 66 42 34 60 4Z"/>
+        <g clip-path="url(#vd-clip)">
+          <rect class="vd-fill-fumi" x="0" y="20" width="60" height="130"/>
+          <rect class="vd-fill-tank" x="60" y="20" width="60" height="130"/>
+        </g>
+        <circle class="vd-shine" cx="44" cy="44" r="6"/>
+      </svg>
+    </div>
+    <div class="vl-brand">VA<b>XA</b></div>
+    <div class="vl-text" id="vl-text">Preparando el servicio…</div>
+    <div class="vl-bar"><i id="vl-fill"></i></div>
+    <div class="vl-tags"><span class="vl-tag vl-tag-fumi">Fumigación</span><span class="vl-tag vl-tag-tank">Tanques de agua</span></div>
+  </div>
+</div>
+
+
+<!-- ============ ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8a4 4 0 0 1 4 4v3a4 4 0 0 1-8 0v-3a4 4 0 0 1 4-4Z"></path><path d="M10 8a2 2 0 0 1 4 0"></path><path d="M8.5 10 5 8.5M8 13H4.5M8.5 16 5 17.5M15.5 10 19 8.5M16 13h3.5M15.5 16 19 17.5M12 7V4"></path>
+    </symbol>
+    <symbol id="i-rat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 16c0-3 2.5-5 6-5 4 0 6.5 2 8 2"></path><circle cx="17.5" cy="11" r="2.6"></circle><path d="M19.5 9.3c.8-.7 2-.6 2.4.3M16 11.2v.01"></path><path d="M4 16c-1.4 0-2.2-1-2-2.2.2-1 1.2-1.6 2.3-1.2"></path><path d="M9 16v2M13 16.5V18.5M5.5 16.2 3 19"></path>
+    </symbol>
+    <symbol id="i-bat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 6v9"></path><path d="M12 8c-1.5-2.5-4-3.5-5-3 0 1.2-1 1.5-2 1.5 1 1 .5 3 0 3.5 2 0 3.5 1 5 3 0-2 1-3.5 2-4Z"></path><path d="M12 8c1.5-2.5 4-3.5 5-3 0 1.2 1 1.5 2 1.5-1 1-.5 3 0 3.5-2 0-3.5 1-5 3 0-2-1-3.5-2-4Z"></path><path d="M11 6.5 12 5l1 1.5"></path>
+    </symbol>
+    <symbol id="i-mosquito" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 14l-1.5 6M12 14l1.5 6"></path><circle cx="12" cy="11" r="2.4"></circle><path d="M12 8.6 12 4"></path><path d="M10 9c-3-2-6-2-8 0M14 9c3-2 6-2 8 0"></path><path d="M2 9c2 .5 5 1.5 8 2M22 9c-2 .5-5 1.5-8 2"></path>
+    </symbol>
+    <symbol id="i-tank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="7" width="14" height="13" rx="2"></rect><path d="M5 11h14"></path><path d="M8 7V5a4 4 0 0 1 8 0v2"></path><path d="M12 14c-1 1-1.6 1.8-1.6 2.6a1.6 1.6 0 0 0 3.2 0c0-.8-.6-1.6-1.6-2.6Z"></path>
+    </symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5c3 4 5.5 6.7 5.5 10A5.5 5.5 0 0 1 6.5 13.5c0-3.3 2.5-6 5.5-10Z"></path><path d="M9.5 14a2.5 2.5 0 0 0 2.5 2.5"></path>
+    </symbol>
+    <symbol id="i-lab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3v6.5L4.8 17a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L15 9.5V3"></path><path d="M8 3h8"></path><path d="M7.5 14h9"></path><circle cx="10.5" cy="16.5" r=".6" fill="currentColor"></circle><circle cx="13.5" cy="17.5" r=".6" fill="currentColor"></circle>
+    </symbol>
+    <symbol id="i-micro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 21h13"></path><path d="M9.5 21a7 7 0 0 0 7-7"></path><path d="M9 18.5h3"></path><rect x="11.2" y="4.1" width="3.4" height="6.4" rx="1.4" transform="rotate(35 12.9 7.3)"></rect><path d="m10.6 9.2-2.4 3.4a2 2 0 0 0 3.3 2.3l1.4-2"></path><path d="M14 13.5h3"></path>
+    </symbol>
+    <symbol id="i-spray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="7" y="9" width="7" height="12" rx="1.5"></rect><path d="M7 12h7"></path><path d="M9 9V6h3v3"></path><path d="M14 6h2M14 4h3M17 7h2"></path>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3 5 6v5c0 4.2 2.8 7.6 7 9 4.2-1.4 7-4.8 7-9V6l-7-3Z"></path><path d="m9 11.5 2 2 4-4"></path>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></symbol>
+    <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.13c-.25.69-1.45 1.32-1.99 1.36-.53.05-1.03.24-3.47-.72-2.92-1.15-4.78-4.15-4.93-4.34-.14-.2-1.18-1.57-1.18-2.99 0-1.42.74-2.12 1.01-2.41.27-.29.59-.36.79-.36.2 0 .39.002.56.01.18.008.42-.07.66.5.25.6.84 2.07.91 2.22.07.15.12.32.02.51-.1.2-.15.32-.29.49-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.2.73-.85.92-1.14.2-.29.39-.24.66-.15.27.1 1.71.81 2 .96.29.15.49.22.56.34.07.12.07.69-.18 1.38Z"></path></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"></path><path d="M6 10v9h12v-9"></path><path d="M10 19v-5h4v5"></path></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 5 4h14l1 5"></path><path d="M4 9c0 1.4 1.1 2.5 2.5 2.5S9 10.4 9 9c0 1.4 1.1 2.5 2.5 2.5S14 10.4 14 9c0 1.4 1.1 2.5 2.5 2.5S19 10.4 19 9"></path><path d="M5 11.5V20h14v-8.5"></path><path d="M10 20v-4h4v4"></path></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"></rect><path d="M9 7h.01M12 7h.01M15 7h.01M9 11h.01M12 11h.01M15 11h.01M9 15h.01M15 15h.01"></path><path d="M11 21v-3h2v3"></path></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2.5h7A1.5 1.5 0 0 1 19 9v8.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17.5Z"></path></symbol>
+    <symbol id="i-school" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"></path><path d="M7 10.5V15c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4.5"></path><path d="M21 8.5v4"></path></symbol>
+    <symbol id="i-gov" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 12 4l8 5"></path><path d="M5 9v9M9 9v9M15 9v9M19 9v9"></path><path d="M3 18h18"></path><path d="M3 21h18"></path></symbol>
+    <symbol id="i-pool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c1.2-1.2 2.3-1.2 3.5 0s2.3 1.2 3.5 0 2.3-1.2 3.5 0 2.3 1.2 3.5 0"></path><path d="M3 20.5c1.2-1.2 2.3-1.2 3.5 0s2.3 1.2 3.5 0 2.3-1.2 3.5 0 2.3 1.2 3.5 0"></path><path d="M8 14V6a2 2 0 0 1 4 0M14 14V6a2 2 0 0 1 4 0"></path></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 13 9 5 9-5M3 17l9 5 9-5"></path></symbol>
+    <symbol id="i-fast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z"></path></symbol>
+    <symbol id="i-team" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.5-3 2.8-4.5 5.5-4.5S14 16 14.5 19"></path><circle cx="17" cy="9" r="2.3"></circle><path d="M16 14.5c2.2.2 3.8 1.6 4.2 4"></path></symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="VAXA inicio">
+      <span class="brand-mark"><svg><use href="#i-shield"></use></svg></span>
+      <span>
+        <span class="brand-name">VA<b>XA</b></span>
+        <span class="brand-sub">Fumigaciones</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="clientes.html">Clientes</a>
+      <a href="consorcios.html">Consorcios</a>
+      <a href="cobertura.html">Cobertura</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-wa" data-wa="general" href="#">
+        <svg><use href="#i-wa"></use></svg> Presupuesto
+      </a>
+      <button class="btn nav-burger" id="burger" aria-label="Menú"><svg><use href="#i-menu"></use></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ PAGE HEAD ============ -->
+<header class="section">
+  <div class="wrap">
+    <div class="section-head center reveal in">
+      <span class="eyebrow">Conocé VAXA</span>
+      <h1>Fumigación y mantenimiento de tanques, con un solo proveedor</h1>
+      <p>VAXA Fumigaciones trabaja en dos grandes áreas con el mismo nivel de profesionalismo: fumigación y control de plagas, y limpieza, reparación e impermeabilización de tanques de agua. Atendemos hogares, comercios, empresas, consorcios e instituciones en CABA y Gran Buenos Aires.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ POR QUÉ VAXA ============ -->
+<section class="section why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué elegir VAXA</span>
+      <h2>Profesionales, prolijos y a tu disposición</h2>
+      <p>Combinamos productos habilitados, personal capacitado y un trato cercano para que resolver un problema de plagas o de tanques de agua sea simple.</p>
+    </div>
+    <div class="why-grid">
+      <article class="why-card reveal">
+        <span class="why-num">01</span>
+        <span class="why-ico"><svg><use href="#i-shield"></use></svg></span>
+        <h3>Trabajo profesional certificado</h3>
+        <p>Aplicamos productos habilitados y técnicas seguras tanto en fumigación como en el mantenimiento de tanques, con respaldo por escrito.</p>
+      </article>
+      <article class="why-card reveal d1">
+        <span class="why-num">02</span>
+        <span class="why-ico"><svg><use href="#i-team"></use></svg></span>
+        <h3>Atención personalizada</h3>
+        <p>Cada consulta recibe un presupuesto personalizado por WhatsApp, según tu espacio, tu plaga o el estado real de tu tanque.</p>
+      </article>
+      <article class="why-card reveal d2">
+        <span class="why-num">03</span>
+        <span class="why-ico"><svg><use href="#i-layers"></use></svg></span>
+        <h3>Dos especialidades, un solo equipo</h3>
+        <p>Fumigación y control de plagas, y mantenimiento integral de tanques de agua: limpieza, reparación e impermeabilización, sin tener que buscar dos proveedores distintos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUESTRA MISIÓN ============ -->
+<section class="section consorcios">
+  <div class="wrap">
+    <div class="cons-grid">
+      <div class="cons-info reveal">
+        <span class="eyebrow on-dark">Nuestra misión</span>
+        <h2>Que tu espacio esté protegido y tu agua esté limpia</h2>
+        <p>Trabajamos para que el control de plagas y el mantenimiento del tanque de agua dejen de ser un problema pendiente. Un mismo equipo, dos especialidades, atención personalizada de principio a fin.</p>
+        <div class="cons-benefits">
+          <div class="cons-benefit"><svg><use href="#i-check"></use></svg> Fumigación de cucarachas, roedores, murciélagos y mosquitos</div>
+          <div class="cons-benefit"><svg><use href="#i-check"></use></svg> Limpieza y desinfección de tanques de agua</div>
+          <div class="cons-benefit"><svg><use href="#i-check"></use></svg> Reparación de tanques: fisuras, pérdidas y tapas</div>
+          <div class="cons-benefit"><svg><use href="#i-check"></use></svg> Impermeabilización de tanques y techos</div>
+          <div class="cons-benefit"><svg><use href="#i-check"></use></svg> Análisis de agua potable y de piletas</div>
+          <div class="cons-benefit"><svg><use href="#i-check"></use></svg> Cobertura en CABA y Gran Buenos Aires</div>
+        </div>
+        <div class="hero-actions" style="margin-bottom:0;">
+          <a class="btn btn-wa btn-lg" data-wa="general" href="#"><svg><use href="#i-wa"></use></svg> Fumigación por WhatsApp</a>
+          <a class="btn btn-tank btn-lg" data-wa="mantenimiento de tanques" data-area="tanques" href="#"><svg><use href="#i-wa"></use></svg> Tanques por WhatsApp</a>
+        </div>
+      </div>
+      <div class="cons-visual reveal d2">
+        <img class="cons-photo slot-img" src="assets/img/serv-plagas.webp" alt="Equipo de VAXA Fumigaciones trabajando" loading="lazy" decoding="async">
+        <div class="cons-overlay">
+          <div class="mono">VAXA · CABA + GBA</div>
+          <h4>Fumigación y mantenimiento de tanques</h4>
+          <div class="cons-stat-row">
+            <div class="cons-stat"><div class="n">2</div><div class="l">áreas de especialización</div></div>
+            <div class="cons-stat"><div class="n">CABA</div><div class="l">+ GBA, hasta Quilmes y Pilar</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section class="section gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestro trabajo</span>
+      <h2>Fumigación y tanques, en el día a día</h2>
+      <p>Algunas postales de los servicios que realizamos en hogares, edificios, comercios e instituciones.</p>
+    </div>
+    <div class="gal-grid">
+      <article class="gal-item wide reveal">
+        <img class="gal-photo slot-img" src="assets/img/gal-1.webp" alt="Fumigación profesional" loading="lazy" decoding="async">
+        <span class="gal-tag">Fumigación</span>
+        <div class="gal-cap"><h4>Tratamientos profesionales</h4><p>Control de plagas en hogares, comercios y edificios.</p></div>
+      </article>
+      <article class="gal-item reveal d1">
+        <img class="gal-photo slot-img" src="assets/img/gal-2.webp" alt="Limpieza de tanques de agua" loading="lazy" decoding="async">
+        <span class="gal-tag">Tanques</span>
+        <div class="gal-cap"><h4>Limpieza de tanques</h4><p>Desinfección de tanques de agua.</p></div>
+      </article>
+      <article class="gal-item reveal d2">
+        <img class="gal-photo slot-img" src="assets/img/gal-3.webp" alt="Control de roedores" loading="lazy" decoding="async">
+        <span class="gal-tag">Plagas</span>
+        <div class="gal-cap"><h4>Control de roedores</h4><p>Prevención y control en espacios comunes.</p></div>
+      </article>
+      <article class="gal-item reveal">
+        <img class="gal-photo slot-img" src="assets/img/gal-4.webp" alt="Reparación de tanques de agua" loading="lazy" decoding="async">
+        <span class="gal-tag">Tanques</span>
+        <div class="gal-cap"><h4>Reparación de tanques</h4><p>Fisuras, pérdidas y tapas dañadas.</p></div>
+      </article>
+      <article class="gal-item reveal d1">
+        <img class="gal-photo slot-img" src="assets/img/gal-5.webp" alt="Análisis de agua potable" loading="lazy" decoding="async">
+        <span class="gal-tag">Agua</span>
+        <div class="gal-cap"><h4>Análisis de agua potable</h4><p>Para hogares, edificios e instituciones.</p></div>
+      </article>
+      <article class="gal-item reveal d2">
+        <img class="gal-photo slot-img" src="assets/img/gal-6.webp" alt="Control de mosquitos" loading="lazy" decoding="async">
+        <span class="gal-tag">Plagas</span>
+        <div class="gal-cap"><h4>Control de mosquitos</h4><p>Espacios abiertos, balcones y terrazas.</p></div>
+      </article>
+      <article class="gal-item reveal">
+        <img class="gal-photo slot-img" src="assets/img/gal-7.webp" alt="Impermeabilización de tanques" loading="lazy" decoding="async">
+        <span class="gal-tag">Tanques</span>
+        <div class="gal-cap"><h4>Impermeabilización</h4><p>Tanques y techos protegidos contra humedad.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="section cta-final">
+  <div class="wrap">
+    <div class="cta-inner reveal">
+      <span class="eyebrow on-dark" style="justify-content:center;display:inline-flex;"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--green-bright);display:inline-block;margin-right:2px;"></span>Hablemos de tu caso</span>
+      <h2>¿Listo para resolver tu problema de <span style="color:var(--green-bright)">plagas o tanques de agua</span>?</h2>
+      <p>Escribinos por WhatsApp y recibí un presupuesto personalizado para tu hogar, empresa, edificio o institución.</p>
+      <div class="cta-actions">
+        <a class="btn btn-wa btn-lg" data-wa="general" href="#"><svg><use href="#i-wa"></use></svg> Fumigación por WhatsApp</a>
+        <a class="btn btn-tank btn-lg" data-wa="mantenimiento de tanques" data-area="tanques" href="#"><svg><use href="#i-wa"></use></svg> Tanques por WhatsApp</a>
+        <a class="btn btn-ghost on-dark btn-lg" href="servicios.html">Ver servicios</a>
+      </div>
+      <div class="cta-trust">
+        <span><svg><use href="#i-check"></use></svg> CABA y Gran Buenos Aires</span>
+        <span><svg><use href="#i-check"></use></svg> Atención personalizada</span>
+        <span><svg><use href="#i-check"></use></svg> Respuesta inmediata</span>
+        <span><svg><use href="#i-check"></use></svg> Trabajo profesional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><svg><use href="#i-shield"></use></svg></span>
+          <span><span class="brand-name">VA<b>XA</b></span><span class="brand-sub">Fumigaciones</span></span>
+        </a>
+        <p>Fumigación, control de plagas y mantenimiento integral de tanques de agua —limpieza, reparación e impermeabilización— para hogares, empresas, consorcios e instituciones en CABA y Gran Buenos Aires.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Servicios</h5>
+        <a href="servicios.html#fumigacion">Fumigación y control de plagas</a>
+        <a href="servicios.html#fumigacion">Roedores, murciélagos y mosquitos</a>
+        <a href="servicios.html#tanques">Limpieza de tanques</a>
+        <a href="servicios.html#tanques">Reparación de tanques</a>
+        <a href="servicios.html#tanques">Impermeabilización</a>
+      </div>
+      <div class="foot-col">
+        <h5>Empresa</h5>
+        <a href="quienes-somos.html">Quiénes somos</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="consorcios.html">Consorcios y administraciones</a>
+        <a href="cobertura.html">Cobertura</a>
+        <a href="faq.html">Preguntas frecuentes</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <span class="foot-sub">Fumigaciones</span>
+        <a href="tel:+5491100000001">+54 9 11 0000-0001</a>
+        <a href="mailto:fumigaciones@vaxafumigaciones.com">fumigaciones@vaxafumigaciones.com</a>
+        <span class="foot-sub">Tanques de agua</span>
+        <a href="tel:+5491100000002">+54 9 11 0000-0002</a>
+        <a href="mailto:tanques@vaxafumigaciones.com">tanques@vaxafumigaciones.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 VAXA Fumigaciones · Fumigación y mantenimiento de tanques en CABA y GBA</span>
+      <span>Atendemos CABA y Gran Buenos Aires · cobertura hasta Quilmes y Pilar según disponibilidad.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOTANTE ============ -->
+<a class="wa-float" data-wa="general" href="#" aria-label="Consultar por WhatsApp">
+  <span class="wa-pulse"></span>
+  <span class="wa-ic"><svg><use href="#i-wa"></use></svg></span>
+  <span class="wa-txt">Consultá ahora</span>
+</a>
+
+<!-- ============ BARRA FIJA MOBILE (WhatsApp + Llamar) ============ -->
+<div class="mobile-cta" role="group" aria-label="Acciones rápidas">
+  <a class="mcta mcta-call" href="tel:+5491100000001" aria-label="Llamar a VAXA">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+    <span>Llamar</span>
+  </a>
+  <a class="mcta mcta-wa" data-wa="general" href="#" aria-label="Escribir por WhatsApp">
+    <svg><use href="#i-wa"></use></svg>
+    <span>WhatsApp</span>
+  </a>
+</div>
+
+<!-- ============ POPUP — Atención personalizada ============ -->
+<div class="popup-overlay" id="popup">
+  <div class="popup">
+    <button class="popup-close" id="popup-close" aria-label="Cerrar"><svg><use href="#i-x"></use></svg></button>
+    <div class="popup-split" aria-hidden="true">
+      <div class="popup-half popup-half-fumi"><svg><use href="#i-bug"></use></svg> Fumigación</div>
+      <div class="popup-half popup-half-tank"><svg><use href="#i-tank"></use></svg> Tanques de agua</div>
+    </div>
+    <div class="popup-body">
+      <span class="popup-tag"><span class="dot"></span>Atención personalizada</span>
+      <h3>¿Te ayudamos con tu consulta?</h3>
+      <p>Contanos qué necesitás —fumigación y control de plagas, o limpieza, reparación e impermeabilización de tanques— y te respondemos por WhatsApp con un presupuesto personalizado.</p>
+      <div class="popup-actions">
+        <a class="btn btn-wa" data-wa="general" href="#"><svg><use href="#i-wa"></use></svg> Fumigación por WhatsApp</a>
+        <a class="btn btn-tank" data-wa="mantenimiento de tanques" data-area="tanques" href="#"><svg><use href="#i-wa"></use></svg> Tanques por WhatsApp</a>
+        <button class="btn btn-ghost" id="popup-later">Ahora no</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/config.js" defer></script>
+<script src="js/loader.js" defer></script>
+<script src="js/interactions.js" defer></script>
+<script src="js/analytics.js" defer></script>
+</body></html>

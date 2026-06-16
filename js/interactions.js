@@ -4,15 +4,21 @@
 (function () {
   "use strict";
 
-  var WA_NUMBER = "5492494621182";
+  var CFG = window.VAXA_CONFIG || {};
+  var WA = CFG.whatsapp || {};
+  var WA_FUMIGACION = WA.fumigacion || "5491100000001";
+  var WA_TANQUES = WA.tanques || "5491100000002";
 
   /* ---------- WhatsApp links ---------- */
-  function waUrl(message) {
-    return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(message);
+  function waNumber(area) {
+    return area === "tanques" ? WA_TANQUES : WA_FUMIGACION;
+  }
+  function waUrl(message, area) {
+    return "https://wa.me/" + waNumber(area) + "?text=" + encodeURIComponent(message);
   }
   function buildMessage(servicio, cliente, zona) {
     if (!servicio || servicio === "general") {
-      return "Hola, quiero pedir un presupuesto a VAXA Fumigaciones.";
+      return "Hola, quiero pedir un presupuesto personalizado a VAXA Fumigaciones.";
     }
     var msg = "Hola, quiero consultar por " + servicio;
     if (cliente) msg += " para " + cliente;
@@ -25,12 +31,22 @@
     document.querySelectorAll("[data-wa]").forEach(function (el) {
       var serv = el.getAttribute("data-wa");
       var cli = el.getAttribute("data-cliente") || "";
-      el.setAttribute("href", waUrl(buildMessage(serv, cli, "")));
+      var area = el.getAttribute("data-area") || "";
+      el.setAttribute("href", waUrl(buildMessage(serv, cli, ""), area));
       el.setAttribute("target", "_blank");
       el.setAttribute("rel", "noopener");
     });
   }
   wireWa();
+
+  /* ---------- Resalta el link activo del nav (desktop + mobile) ---------- */
+  function markActiveLinks() {
+    var file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+    if (file === "") file = "index.html";
+    document.querySelectorAll(".nav-links a[href], .mnav-links a[href]").forEach(function (a) {
+      if (a.getAttribute("href").toLowerCase() === file) a.classList.add("active");
+    });
+  }
 
   /* ---------- Nav scroll state ---------- */
   var nav = document.getElementById("nav");
@@ -49,9 +65,10 @@
   var burger = document.getElementById("burger");
   if (burger) {
     var ITEMS = [
-      ["Problemas", "#diagnostico"], ["Servicios", "#servicios"],
-      ["Clientes", "#clientes"], ["Consorcios", "#consorcios"],
-      ["Cobertura", "#cobertura"], ["FAQ", "#faq"], ["Contacto", "#presupuesto"]
+      ["Inicio", "index.html"], ["Quiénes somos", "quienes-somos.html"],
+      ["Servicios", "servicios.html"], ["Clientes", "clientes.html"],
+      ["Consorcios", "consorcios.html"], ["Cobertura", "cobertura.html"],
+      ["FAQ", "faq.html"], ["Contacto", "contacto.html"]
     ];
     var menu = document.createElement("div");
     menu.id = "m-menu";
@@ -260,7 +277,7 @@
   (function heroRotator() {
     var el = document.getElementById("hr-word");
     if (!el) return;
-    var words = ["Cucarachas", "Roedores", "Murciélagos", "Mosquitos", "Tanques de agua", "Análisis de agua", "Plagas urbanas"];
+    var words = ["Cucarachas", "Roedores", "Murciélagos y mosquitos", "Limpieza de tanques", "Reparación de tanques", "Impermeabilización", "Plagas urbanas"];
     var i = 0;
     el.style.opacity = "1";
     setInterval(function () {
@@ -451,7 +468,7 @@
       var cli = state.cliente || "mi espacio";
       var zona = state.zona || "mi zona";
       var msg = "Hola, quiero consultar por " + serv + " para " + cli + " en " + zona + ".";
-      sendBtn.setAttribute("href", "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg));
+      sendBtn.setAttribute("href", waUrl(msg));
       sendBtn.setAttribute("target", "_blank");
       sendBtn.setAttribute("rel", "noopener");
     }
@@ -477,7 +494,8 @@
       ["¿Hasta qué zonas llegan?", "Atendemos CABA y Gran Buenos Aires, con cobertura operativa hasta Quilmes y hasta Pilar según disponibilidad. Consultanos por tu zona puntual."],
       ["¿La fumigación sirve para cucarachas todo el año?", "Sí. Las cucarachas no son solo un problema de verano. Ofrecemos control profesional preventivo y correctivo durante todo el año."],
       ["¿También trabajan con piletas?", "Sí. Realizamos análisis y control de agua para piletas de hogares, clubes y espacios recreativos."],
-      ["¿Puedo pedir presupuesto por WhatsApp?", "Sí. Podés escribirnos directo por WhatsApp y recibir asesoramiento y presupuesto rápido para tu caso."]
+      ["¿Puedo pedir presupuesto por WhatsApp?", "Sí. Podés escribirnos directo por WhatsApp y recibir asesoramiento y un presupuesto personalizado para tu caso."],
+      ["¿Tienen un WhatsApp específico para tanques de agua?", "Sí. Tenemos un contacto separado para fumigaciones y otro para tanques de agua, así te atiende quien se especializa en tu consulta."]
     ];
     items.forEach(function (it, i) {
       var div = document.createElement("div");
@@ -530,8 +548,24 @@
     overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
     overlay.querySelectorAll("[data-wa]").forEach(function (a) { a.addEventListener("click", close); });
 
-    // Se muestra en cada carga / recarga de la página.
-    setTimeout(function () { overlay.classList.add("show"); }, 1200);
+    // Se muestra después de ~2 desplazamientos hacia abajo del usuario.
+    var scrollHits = 0, lastY = window.scrollY || window.pageYOffset || 0, shown = false;
+    function onPopupScroll() {
+      if (shown) return;
+      var y = window.scrollY || window.pageYOffset || 0;
+      if (y > lastY + 40) {
+        scrollHits++;
+        lastY = y;
+        if (scrollHits >= 2) {
+          shown = true;
+          overlay.classList.add("show");
+          window.removeEventListener("scroll", onPopupScroll);
+        }
+      } else {
+        lastY = y;
+      }
+    }
+    window.addEventListener("scroll", onPopupScroll, { passive: true });
   })();
 
   /* ============================================================
@@ -541,7 +575,8 @@
     var form = document.getElementById("mail-form");
     if (!form) return;
     var err = document.getElementById("mf-error");
-    var TO = "felipelentini66@gmail.com";
+    var EMAIL_FUMIGACION = (CFG.email && CFG.email.fumigacion) || "fumigaciones@vaxafumigaciones.com";
+    var EMAIL_TANQUES = (CFG.email && CFG.email.tanques) || "tanques@vaxafumigaciones.com";
     function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
     function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
@@ -565,7 +600,8 @@
         "Mensaje:",
         msg
       ].filter(function (l) { return l !== ""; }).join("\n");
-      window.location.href = "mailto:" + TO +
+      var to = /tanque|impermeabiliz|agua/i.test(serv) ? EMAIL_TANQUES : EMAIL_FUMIGACION;
+      window.location.href = "mailto:" + to +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
     });
@@ -685,4 +721,5 @@
     }
   })();
 
+  markActiveLinks();
 })();
