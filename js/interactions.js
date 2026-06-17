@@ -486,12 +486,12 @@
     if (!wrap) return;
     var items = [
       ["¿Trabajan en Capital Federal?", "Sí. VAXA trabaja en toda la Ciudad Autónoma de Buenos Aires (CABA), atendiendo hogares, comercios, empresas, consorcios e instituciones."],
-      ["¿Trabajan en Gran Buenos Aires?", "Sí. Cubrimos Gran Buenos Aires con cobertura operativa hasta Quilmes y hasta Pilar según disponibilidad."],
+      ["¿Trabajan en Gran Buenos Aires?", "Sí. Cubrimos Capital Federal y Gran Buenos Aires."],
       ["¿Hacen control de plagas para consorcios?", "Sí. Brindamos control de plagas, limpieza de tanques, reparación, impermeabilización y análisis de agua potable para edificios, administraciones y espacios comunes."],
       ["¿Realizan limpieza de tanques?", "Sí. Hacemos limpieza, desinfección, reparación e impermeabilización de tanques de agua para hogares, edificios e instituciones."],
       ["¿Hacen análisis de agua potable?", "Sí. Realizamos análisis bacteriológico, físico-químico y de arsénico para agua potable, además de control de agua para piletas."],
       ["¿Trabajan con escuelas, empresas y gobierno?", "Sí. Atendemos hogares, comercios, empresas, consorcios, administraciones, escuelas, clubes, gobierno e instituciones públicas y privadas."],
-      ["¿Hasta qué zonas llegan?", "Atendemos CABA y Gran Buenos Aires, con cobertura operativa hasta Quilmes y hasta Pilar según disponibilidad. Consultanos por tu zona puntual."],
+      ["¿Hasta qué zonas llegan?", "Atendemos CABA y Gran Buenos Aires. Consultanos por tu zona puntual."],
       ["¿El control de plagas sirve para cucarachas todo el año?", "Sí. Las cucarachas no son solo un problema de verano. Ofrecemos control profesional preventivo y correctivo durante todo el año."],
       ["¿También trabajan con piletas?", "Sí. Realizamos análisis y control de agua para piletas de hogares, clubes y espacios recreativos."],
       ["¿Puedo pedir presupuesto por WhatsApp?", "Sí. Podés escribirnos directo por WhatsApp y recibir asesoramiento y un presupuesto personalizado para tu caso."],
@@ -610,6 +610,26 @@
       var el = document.getElementById(id);
       if (el && err) el.addEventListener("input", function () { err.classList.remove("show"); });
     });
+  })();
+
+  /* ============================================================
+     SLIDER ANTES / DESPUÉS — automático y suave
+     ============================================================ */
+  (function baSlider() {
+    var el = document.querySelector(".ba-slider");
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.style.setProperty("--rev", "50%");
+      return;
+    }
+    var t = 0;
+    function tick() {
+      t += 0.007;
+      var v = 50 + 36 * Math.sin(t); // recorre ~14%..86%
+      el.style.setProperty("--rev", v.toFixed(2) + "%");
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   })();
 
   /* ============================================================

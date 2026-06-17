@@ -619,7 +619,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: radial-gradient(120% 90% at 80% 0%, transparent 40%, oklch(0.12 0.01 220 / 0.5) 100%);
 }
 .hero .wrap { position: relative; z-index: 3; width: 100%; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr); gap: 50px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
+.hero-copy { max-width: 760px; }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
@@ -770,6 +771,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: oklch(0.16 0.012 230 / 0.6); backdrop-filter: blur(6px); border: 1px solid oklch(0.985 0 0 / 0.12);
 }
 .diag-ico .emo { width: 24px; height: 24px; display: block; }
+.diag-ico svg { width: 24px; height: 24px; display: block; color: var(--green-glow); }
 .diag-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
 .diag-body h3 { font-size: 23px; margin-bottom: 9px; color: var(--tx); }
 .diag-body p { color: var(--tx-dim); font-size: 15.5px; margin-bottom: 20px; flex: 1; }
