@@ -494,3 +494,35 @@ body.mnav-open { overflow: hidden; }
 
 /* Sección chica "dedicados a" */
 .dedicados .ded-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
+
+/* ============================================================
+   HERO — visual "Temporada de plagas" (columna derecha)
+   ============================================================ */
+.hero-grid-2 { grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.85fr); }
+.hero-media {
+  position: relative; align-self: center;
+  border-radius: var(--radius-lg, 22px); overflow: hidden;
+  aspect-ratio: 4 / 5; max-height: 540px;
+  border: 1px solid oklch(0.985 0 0 / 0.16);
+  box-shadow: 0 30px 70px oklch(0 0 0 / 0.45);
+}
+.hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, oklch(0.18 0.04 160 / 0.55) 100%);
+  pointer-events: none;
+}
+.hero-media-badge {
+  position: absolute; left: 16px; bottom: 16px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: oklch(0.985 0 0 / 0.12); backdrop-filter: blur(10px);
+  border: 1px solid oklch(0.985 0 0 / 0.22);
+  padding: 9px 15px; border-radius: 100px;
+  font-family: var(--font-display); font-weight: 700; font-size: 13.5px;
+  letter-spacing: 0.01em; color: #fff;
+}
+.hero-media-badge svg { width: 17px; height: 17px; color: var(--green-glow); }
+@media (max-width: 980px) {
+  .hero-grid-2 { grid-template-columns: 1fr; }
+  .hero-media { aspect-ratio: 16 / 10; max-height: 360px; order: -1; }
+}
