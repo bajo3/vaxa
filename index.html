@@ -163,9 +163,24 @@
           <span><svg><use href="#i-pin"></use></svg> CABA y Gran Buenos Aires</span>
         </div>
       </div>
-      <div class="hero-media reveal in d2">
-        <img src="assets/img/serv-plagas.webp" alt="Temporada de plagas — control profesional VAXA" loading="eager" decoding="async">
-        <span class="hero-media-badge"><svg><use href="#i-bug"></use></svg> Temporada de plagas</span>
+      <div class="hero-monitor reveal in d2" id="hero-monitor" aria-label="Alerta de temporada de plagas en CABA y GBA">
+        <div class="hm-photos" id="hm-photos"></div>
+        <span class="hm-shade" aria-hidden="true"></span>
+        <span class="hm-scan" aria-hidden="true"></span>
+        <span class="hm-glare" aria-hidden="true"></span>
+        <div class="hm-top">
+          <span class="hm-alert"><span class="dot"></span><span id="hm-alert-text">EN TEMPORADA</span></span>
+          <span class="hm-caba">CABA + GBA</span>
+        </div>
+        <div class="hm-body">
+          <span class="hm-label">Temporada de</span>
+          <h3 class="hm-name" id="hm-name">—</h3>
+          <div class="hm-meter">
+            <span class="hm-bar"><i id="hm-bar-fill"></i></span>
+            <span class="hm-meter-top">Pico de actividad · <b id="hm-level">—</b></span>
+          </div>
+          <div class="hm-tabs" id="hm-tabs" role="tablist" aria-label="Plagas de temporada"></div>
+        </div>
       </div>
     </div>
   </div>

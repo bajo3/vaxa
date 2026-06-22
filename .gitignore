@@ -12,3 +12,4 @@ _extracted_source.html
 *.BACKUP2.html
 
 .vercel
+.agents/

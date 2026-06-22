@@ -633,6 +633,134 @@
   })();
 
   /* ============================================================
+     MONITOR DE TEMPORADA — hero: rotación + tabs + parallax
+     ============================================================ */
+  (function heroMonitor() {
+    var root = document.getElementById("hero-monitor");
+    if (!root) return;
+
+    // ---- Catálogo por defecto (si falta config en config.js) ----
+    var DEFAULTS = {
+      cucarachas:  { nombre: "Cucarachas",  img: "assets/img/cucas.webp",     nivel: "Alta",  actividad: 88, color: "oklch(0.82 0.18 152)", meses: [10, 11, 12, 1, 2, 3] },
+      roedores:    { nombre: "Roedores",    img: "assets/img/roedores.webp",  nivel: "Alta",  actividad: 80, color: "oklch(0.80 0.16 70)",  meses: [4, 5, 6, 7, 8, 9] },
+      murcielagos: { nombre: "Murciélagos", img: "assets/img/bat.webp",        nivel: "Media", actividad: 62, color: "oklch(0.74 0.16 300)", meses: [10, 11, 12, 1, 2] },
+      mosquitos:   { nombre: "Mosquitos",   img: "assets/img/mosquitos.webp", nivel: "Alta",  actividad: 90, color: "oklch(0.80 0.14 215)", meses: [10, 11, 12, 1, 2, 3, 4] }
+    };
+    var cfg = (window.VAXA_CONFIG && window.VAXA_CONFIG.temporada) || {};
+    var plagas = cfg.plagas || DEFAULTS;
+    var order = ["cucarachas", "roedores", "murcielagos", "mosquitos"];
+
+    // ---- Determinar qué plagas están en temporada ----
+    var active;
+    if (cfg.modo === "auto") {
+      var mes = new Date().getMonth() + 1; // 1-12
+      active = order.filter(function (k) {
+        var m = plagas[k] && plagas[k].meses;
+        return m && m.indexOf(mes) !== -1;
+      });
+    } else {
+      active = (cfg.activas || ["cucarachas"]).filter(function (k) { return plagas[k]; });
+    }
+    if (!active.length) active = order.filter(function (k) { return plagas[k]; }); // fallback
+
+    var PESTS = active.map(function (k) {
+      var p = plagas[k];
+      return { name: p.nombre, img: p.img, level: p.nivel, pct: p.actividad, accent: p.color };
+    });
+
+    // ---- Construir DOM desde la config ----
+    var photos = document.getElementById("hm-photos");
+    var tabsWrap = document.getElementById("hm-tabs");
+    var nameEl = document.getElementById("hm-name");
+    var levelEl = document.getElementById("hm-level");
+    var fillEl = document.getElementById("hm-bar-fill");
+    var alertEl = document.getElementById("hm-alert-text");
+
+    if (alertEl && cfg.etiqueta) alertEl.textContent = cfg.etiqueta;
+
+    photos.innerHTML = "";
+    tabsWrap.innerHTML = "";
+    var imgs = [], tabs = [];
+    PESTS.forEach(function (p, idx) {
+      var im = document.createElement("img");
+      im.className = "hm-ico" + (idx === 0 ? " is-on" : "");
+      im.src = p.img;
+      im.alt = "Temporada de " + p.name.toLowerCase();
+      im.loading = "eager";
+      im.decoding = "async";
+      photos.appendChild(im);
+      imgs.push(im);
+
+      if (PESTS.length > 1) {
+        var bt = document.createElement("button");
+        bt.type = "button";
+        bt.className = "hm-tab" + (idx === 0 ? " is-on" : "");
+        bt.textContent = p.name;
+        bt.dataset.i = idx;
+        tabsWrap.appendChild(bt);
+        tabs.push(bt);
+      }
+    });
+
+    var i = 0, timer = null;
+    var DELAY = Math.max(1500, (cfg.intervalo || 4) * 1000);
+    var rotar = cfg.rotar !== false && PESTS.length > 1;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function render(n) {
+      i = n;
+      var p = PESTS[n];
+      root.style.setProperty("--hm-accent", p.accent);
+      imgs.forEach(function (el, k) { el.classList.toggle("is-on", k === n); });
+      tabs.forEach(function (el, k) { el.classList.toggle("is-on", k === n); });
+      if (nameEl) {
+        nameEl.textContent = p.name;
+        nameEl.style.animation = "none";
+        void nameEl.offsetWidth; // reinicia animación de entrada
+        nameEl.style.animation = "";
+      }
+      if (levelEl) levelEl.textContent = p.level;
+      if (fillEl) fillEl.style.width = p.pct + "%";
+    }
+
+    function next() { render((i + 1) % PESTS.length); }
+    function start() { if (reduce || timer || !rotar) return; timer = setInterval(next, DELAY); }
+    function stop() { clearInterval(timer); timer = null; }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        stop();
+        render(+tab.dataset.i);
+        start();
+      });
+    });
+
+    // pausa al pasar el mouse / foco
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+
+    // parallax suave (tilt) con el mouse
+    if (!reduce && window.matchMedia("(pointer:fine)").matches) {
+      root.addEventListener("mousemove", function (e) {
+        var r = root.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        root.style.setProperty("--rx", (dx * 5).toFixed(2) + "deg");
+        root.style.setProperty("--ry", (-dy * 5).toFixed(2) + "deg");
+      });
+      root.addEventListener("mouseleave", function () {
+        root.style.setProperty("--rx", "0deg");
+        root.style.setProperty("--ry", "0deg");
+      });
+    }
+
+    render(0);
+    start();
+  })();
+
+  /* ============================================================
      BICHOS CAMINANDO — dos capas: global (toda la web) + hero
      ============================================================ */
   (function bugs() {
