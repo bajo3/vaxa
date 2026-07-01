@@ -383,20 +383,20 @@
    ============================================================ */
 
 :root {
-  /* --- Paleta (verde intenso · esmeralda vivo + azul agua) --- */
-  --green-deep:    oklch(0.30 0.078 166);   /* base verde profundo */
-  --green-deeper:  oklch(0.225 0.058 166);  /* casi carbón esmeralda */
-  --green-forest:  oklch(0.46 0.13 162);   /* pino vivo */
-  --green:         oklch(0.60 0.155 160);   /* esmeralda intenso */
-  --green-bright:  oklch(0.72 0.175 158);   /* verde brillante vibrante */
-  --green-glow:    oklch(0.84 0.165 159);
-  --green-wash:    oklch(0.965 0.014 165);  /* off-white verdoso */
+  /* --- Paleta oficial VAXA v2: navy dominante + verde de acento #03CE13 --- */
+  --green-deep:    oklch(0.28 0.065 254);   /* navy medio (superficie oscura) */
+  --green-deeper:  oklch(0.21 0.06 254);    /* navy profundo (casi #011A38) */
+  --green-forest:  oklch(0.60 0.20 143);   /* verde de marca, tono medio */
+  --green:         oklch(0.738 0.248 143);   /* verde de marca #03CE13 */
+  --green-bright:  oklch(0.80 0.235 140);   /* verde brillante */
+  --green-glow:    oklch(0.87 0.20 138);
+  --green-wash:    oklch(0.965 0.025 143);  /* off-white verdoso */
 
-  /* azul agua / laboratorio — paleta oficial VAXA: celeste #1A8CD5 + azul #0461C3 */
-  --blue:          oklch(0.617 0.145 244);   /* celeste #1A8CD5 */
-  --blue-deep:     oklch(0.505 0.171 256);   /* azul #0461C3 */
-  --blue-bright:   oklch(0.70 0.135 244);
-  --blue-wash:     oklch(0.96 0.022 246);
+  /* azul agua / laboratorio — paleta oficial VAXA v2: azul #0066E0 sobre navy #011A38 */
+  --blue:          oklch(0.538 0.203 258);   /* azul de marca #0066E0 */
+  --blue-deep:     oklch(0.219 0.067 254);   /* navy de marca #011A38 */
+  --blue-bright:   oklch(0.66 0.175 256);
+  --blue-wash:     oklch(0.96 0.022 254);
 
   --white:         oklch(0.99 0.004 165);   /* blanco neutro */
   --paper:         oklch(0.975 0.006 162);
@@ -529,23 +529,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 11px; }
-.brand-mark {
-  width: 38px; height: 38px; border-radius: 11px;
-  background: linear-gradient(140deg, var(--green-forest), var(--green-bright));
-  display: grid; place-items: center; position: relative;
-  box-shadow: var(--shadow-green);
-}
-.brand-mark::before {
-  content: ""; position: absolute; inset: 0; border-radius: 11px;
-  box-shadow: inset 0 0 0 1.5px oklch(0.985 0 0 / 0.25);
-}
-.brand-mark svg { width: 21px; height: 21px; color: var(--white); }
-.brand-name { font-family: var(--font-display); font-weight: 700; font-size: 21px; letter-spacing: 0.02em; }
-.brand-name b { color: var(--green-forest); }
-.brand-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); font-weight: 600; margin-top: -2px; }
-.nav.on-hero:not(.scrolled) .brand-name { color: var(--white); }
-.nav.on-hero:not(.scrolled) .brand-name b { color: var(--green-glow); }
-.nav.on-hero:not(.scrolled) .brand-sub { color: oklch(0.985 0 0 / 0.6); }
+.brand-logo { display: flex; align-items: center; color: var(--blue-deep); }
+.brand-logo svg { width: auto; height: 26px; display: block; }
+.nav.on-hero:not(.scrolled) .brand-logo { color: var(--white); }
 
 .nav-links { display: flex; align-items: center; gap: 18px; }
 .nav-links a { font-size: 14px; font-weight: 600; color: var(--ink-soft); transition: color .2s; }
@@ -565,7 +551,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden; color: var(--white);
   padding: calc(var(--nav-h) + 40px) 0 60px;
 }
-.hero-bg { position: absolute; inset: 0; z-index: 1; overflow: hidden; background: var(--green-deeper); }
+.hero-bg { position: absolute; inset: 0; z-index: 1; overflow: hidden; background: var(--blue-deep); }
 .hero-photo {
   display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 38%;
   transform: scale(1.08);
@@ -574,27 +560,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 @keyframes heroZoom { from { transform: scale(1.08) translateY(0); } to { transform: scale(1.18) translateY(-2%); } }
 @media (prefers-reduced-motion: reduce) { .hero-photo { animation: none; transform: scale(1.06); } }
-/* duotone verde intenso sobre la foto */
+/* duotone navy de marca sobre la foto, con un leve toque verde en el brillo */
 .hero-grade {
   content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background:
-    radial-gradient(120% 100% at 78% 18%, oklch(0.62 0.20 158 / 0.30) 0%, transparent 55%),
-    linear-gradient(180deg, oklch(0.50 0.17 160 / 0.30) 0%, oklch(0.22 0.06 168 / 0.10) 50%, oklch(0.30 0.12 158 / 0.42) 100%);
+    radial-gradient(120% 100% at 78% 18%, oklch(0.60 0.14 250 / 0.28) 0%, transparent 55%),
+    linear-gradient(180deg, oklch(0.42 0.13 254 / 0.30) 0%, oklch(0.22 0.07 254 / 0.10) 50%, oklch(0.24 0.09 254 / 0.42) 100%);
   mix-blend-mode: soft-light;
 }
-/* overlay oscuro verdoso para legibilidad */
+/* overlay oscuro navy para legibilidad */
 .hero-bg::after {
   content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
   background:
-    linear-gradient(95deg, oklch(0.16 0.04 168 / 0.94) 0%, oklch(0.17 0.045 165 / 0.74) 38%, oklch(0.18 0.05 162 / 0.30) 70%, oklch(0.18 0.05 162 / 0.55) 100%),
-    linear-gradient(to top, oklch(0.13 0.035 168 / 0.92) 0%, transparent 42%);
+    linear-gradient(95deg, oklch(0.145 0.05 254 / 0.94) 0%, oklch(0.155 0.055 254 / 0.74) 38%, oklch(0.165 0.06 254 / 0.30) 70%, oklch(0.165 0.06 254 / 0.55) 100%),
+    linear-gradient(to top, oklch(0.12 0.045 254 / 0.92) 0%, transparent 42%);
 }
-/* malla técnica verde animada */
+/* malla técnica navy animada */
 .hero-grid-fx {
   position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0.5;
   background-image:
-    linear-gradient(oklch(0.80 0.19 158 / 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.80 0.19 158 / 0.07) 1px, transparent 1px);
+    linear-gradient(oklch(0.75 0.10 250 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.75 0.10 250 / 0.08) 1px, transparent 1px);
   background-size: 46px 46px;
   mask-image: radial-gradient(120% 80% at 70% 40%, #000 0%, transparent 75%);
   -webkit-mask-image: radial-gradient(120% 80% at 70% 40%, #000 0%, transparent 75%);
@@ -602,15 +588,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 @keyframes gridDrift { to { background-position: 46px 46px; } }
 @media (prefers-reduced-motion: reduce) { .hero-grid-fx { animation: none; } }
-/* escaneo sutil y profesional (línea fina) sobre la foto */
+/* escaneo sutil y profesional (línea fina) sobre la foto — acento verde de marca */
 .hero-scan {
   position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden;
   mix-blend-mode: screen; opacity: 0.5;
 }
 .hero-scan::before {
   content: ""; position: absolute; left: 0; right: 0; height: 32%;
-  background: linear-gradient(to bottom, transparent, oklch(0.72 0.125 165 / 0.10) 60%, oklch(0.82 0.135 167 / 0.6));
-  border-bottom: 1.5px solid oklch(0.82 0.135 167 / 0.8);
+  background: linear-gradient(to bottom, transparent, oklch(0.75 0.20 143 / 0.10) 60%, oklch(0.80 0.22 143 / 0.55));
+  border-bottom: 1.5px solid oklch(0.80 0.22 143 / 0.75);
   animation: heroScan 7s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 @keyframes heroScan { 0% { transform: translateY(-110%); } 55%,100% { transform: translateY(330%); } }
@@ -988,22 +974,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cov-map {
   position: relative; aspect-ratio: 1/1; border-radius: var(--radius-lg); overflow: hidden;
   background:
-    radial-gradient(70% 70% at 50% 50%, oklch(0.32 0.10 162) 0%, var(--green-deeper) 70%, oklch(0.18 0.05 168) 100%);
+    radial-gradient(70% 70% at 50% 50%, oklch(0.26 0.07 254) 0%, var(--green-deeper) 70%, oklch(0.15 0.05 254) 100%);
   border: 1px solid var(--card-line); display: grid; place-items: center;
-  box-shadow: inset 0 0 70px oklch(0.6 0.18 158 / 0.18);
+  box-shadow: inset 0 0 70px oklch(0.5 0.14 254 / 0.18);
 }
 /* === MAPA DE COBERTURA === */
 .map-art {
   position: relative; width: 90%; height: 90%; border-radius: 22px;
   overflow: hidden;
-  background: linear-gradient(165deg, oklch(0.30 0.05 168) 0%, oklch(0.235 0.045 178) 100%);
-  box-shadow: inset 0 0 50px oklch(0.7 0.2 158 / 0.18), 0 0 0 1px oklch(0.80 0.19 158 / 0.18);
+  background: linear-gradient(165deg, oklch(0.24 0.06 254) 0%, oklch(0.195 0.05 254) 100%);
+  box-shadow: inset 0 0 50px oklch(0.6 0.16 254 / 0.18), 0 0 0 1px oklch(0.70 0.15 254 / 0.18);
 }
 .map-grid {
   position: absolute; inset: 0; opacity: 0.55;
   background-image:
-    repeating-linear-gradient(0deg, oklch(0.80 0.19 158 / 0.10) 0 1px, transparent 1px 12.5%),
-    repeating-linear-gradient(90deg, oklch(0.80 0.19 158 / 0.10) 0 1px, transparent 1px 11%);
+    repeating-linear-gradient(0deg, oklch(0.70 0.15 254 / 0.10) 0 1px, transparent 1px 12.5%),
+    repeating-linear-gradient(90deg, oklch(0.70 0.15 254 / 0.10) 0 1px, transparent 1px 11%);
 }
 .map-river {
   position: absolute; left: -25%; right: -10%; bottom: -10%; height: 48%;
@@ -1136,7 +1122,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .footer { background: var(--green-deeper); color: oklch(0.985 0 0 / 0.7); padding: 64px 0 32px; }
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
-.foot-brand .brand-name { color: var(--white); }
+.foot-brand .brand-logo { color: var(--white); }
 .foot-brand p { margin-top: 16px; font-size: 14.5px; max-width: 280px; }
 .foot-col h5 { font-family: var(--font-display); color: var(--white); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
 .foot-col a { display: block; font-size: 14.5px; margin-bottom: 10px; transition: color .2s; }
@@ -1265,12 +1251,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    TEMA OSCURO PREMIUM (copiado + mejorado de la referencia)
    ============================================================ */
 :root {
-  --surface-1: oklch(0.17 0.03 165);
-  --surface-2: oklch(0.215 0.035 166);
-  --card:      oklch(0.215 0.035 166);
-  --card-line: oklch(0.31 0.03 166);
-  --tx:        oklch(0.97 0.008 165);
-  --tx-dim:    oklch(0.72 0.02 165);
+  --surface-1: oklch(0.145 0.05 254);
+  --surface-2: oklch(0.19 0.06 254);
+  --card:      oklch(0.19 0.06 254);
+  --card-line: oklch(0.30 0.065 254);
+  --tx:        oklch(0.97 0.008 254);
+  --tx-dim:    oklch(0.72 0.02 254);
 }
 body { background: var(--surface-1); color: var(--tx); }
 h1, h2, h3, h4 { color: var(--tx); }
@@ -1283,7 +1269,7 @@ h1, h2, h3, h4 { color: var(--tx); }
 
 /* nav */
 .nav.scrolled { background: oklch(0.165 0.014 232 / 0.86); box-shadow: 0 1px 0 var(--card-line); }
-.brand-name { color: var(--tx); }
+.brand-logo { color: var(--tx); }
 .nav-links a { color: var(--tx-dim); }
 
 /* hero selector → tarjetas oscuras */

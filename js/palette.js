@@ -2,7 +2,7 @@
 (function(){
   var r=document.documentElement;
   var ACC=['emerald','ocean','copper','violet','teal','sky','amber','rose','crimson','slate'];
-  var BG =['verde','carbon','azul','negro','calido'];
+  var BG =['navy','verde','carbon','azul','negro','calido'];
   function setGroup(dataAttr, btnAttr, val, lsKey){
     r.setAttribute(dataAttr, val);
     document.querySelectorAll('#vaxa-palette-dock ['+btnAttr+']').forEach(function(b){
@@ -10,7 +10,7 @@
     });
     try{ localStorage.setItem(lsKey, val); }catch(e){}
   }
-  var acc='emerald', bg='verde';
+  var acc='emerald', bg='navy';
   try{ var a=localStorage.getItem('vaxaAccent'); if(ACC.indexOf(a)>=0) acc=a;
        var g=localStorage.getItem('vaxaBg'); if(BG.indexOf(g)>=0) bg=g; }catch(e){}
   setGroup('data-accent','data-acc',acc,'vaxaAccent');

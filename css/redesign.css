@@ -27,8 +27,8 @@ html.loading, html.loading body { overflow: hidden; }
 @keyframes vl-rise { 0%,100% { transform: translateY(8px); } 50% { transform: translateY(0); } }
 .vd-shine { fill: oklch(0.985 0 0 / 0.55); }
 
-.vl-brand { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: .04em; color: #fff; }
-.vl-brand b { color: var(--green-glow, oklch(0.84 0.16 160)); }
+.vl-brand { display: flex; color: #fff; }
+.vl-brand svg { width: auto; height: 28px; display: block; }
 .vl-text { font-family: var(--font-body), system-ui, sans-serif; font-size: 14px; color: oklch(0.985 0 0 / 0.7); min-height: 1.4em; text-align: center; }
 .vl-tags { display: flex; gap: 10px; }
 .vl-tag { font-family: var(--font-display), system-ui, sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px; background: oklch(0.985 0 0 / 0.10); }
@@ -155,8 +155,8 @@ a, button, summary, label[for], [role="button"],
    ==================================================== */
 
 /* --- COLOR (acento de marca) --- */
-/* Paleta oficial VAXA (logo): esmeralda #17BE91 + verde brillante #01EA09 */
-:root[data-accent="emerald"]{--green-forest:oklch(0.52 0.135 172);--green:oklch(0.713 0.141 168);--green-bright:oklch(0.812 0.255 145);--green-glow:oklch(0.88 0.205 150);--green-wash:oklch(0.965 0.02 168);--shadow-green:0 22px 60px oklch(0.713 0.12 165/0.30);}
+/* Paleta oficial VAXA v2 (presentación de marca): verde #03CE13 + azul #0066E0 sobre navy #011A38 */
+:root[data-accent="emerald"]{--green-forest:oklch(0.60 0.20 143);--green:oklch(0.738 0.248 143);--green-bright:oklch(0.80 0.235 140);--green-glow:oklch(0.87 0.20 138);--green-wash:oklch(0.965 0.025 143);--shadow-green:0 22px 60px oklch(0.738 0.15 143/0.30);}
 :root[data-accent="ocean"]{--green-forest:oklch(0.47 0.135 232);--green:oklch(0.6 0.155 232);--green-bright:oklch(0.72 0.175 232);--green-glow:oklch(0.84 0.165 232);--green-wash:oklch(0.965 0.014 232);--shadow-green:0 22px 60px oklch(0.60 0.105 228/0.28);}
 :root[data-accent="copper"]{--green-forest:oklch(0.47 0.135 52);--green:oklch(0.6 0.155 52);--green-bright:oklch(0.72 0.175 52);--green-glow:oklch(0.84 0.165 52);--green-wash:oklch(0.965 0.014 52);--shadow-green:0 22px 60px oklch(0.60 0.105 50/0.28);}
 :root[data-accent="violet"]{--green-forest:oklch(0.47 0.135 292);--green:oklch(0.6 0.155 292);--green-bright:oklch(0.72 0.175 292);--green-glow:oklch(0.84 0.165 292);--green-wash:oklch(0.965 0.014 292);--shadow-green:0 22px 60px oklch(0.60 0.105 295/0.28);}
@@ -168,6 +168,8 @@ a, button, summary, label[for], [role="button"],
 :root[data-accent="slate"]{--green-forest:oklch(0.47 0.022 250);--green:oklch(0.6 0.025 250);--green-bright:oklch(0.72 0.028 250);--green-glow:oklch(0.84 0.026 250);--green-wash:oklch(0.965 0.002 250);--shadow-green:0 22px 60px oklch(0.60 0.017 250/0.28);}
 
 /* --- FONDO (fondo oscuro de la pagina) --- */
+/* Navy oficial de marca #011A38 = oklch(0.219 0.067 254) — tema por defecto */
+:root[data-bg="navy"]{--surface-1:oklch(0.145 0.05 254);--surface-2:oklch(0.19 0.06 254);--card:oklch(0.19 0.06 254);--card-line:oklch(0.30 0.065 254);--green-deep:oklch(0.28 0.065 254);--green-deeper:oklch(0.21 0.06 254);--ink:oklch(0.175 0.055 254);--carbon:oklch(0.245 0.06 254);}
 :root[data-bg="verde"]{--surface-1:oklch(0.17 0.03 160);--surface-2:oklch(0.215 0.03 160);--card:oklch(0.215 0.03 160);--card-line:oklch(0.31 0.03 160);--green-deep:oklch(0.3 0.03 160);--green-deeper:oklch(0.225 0.03 160);--ink:oklch(0.18 0.03 160);--carbon:oklch(0.26 0.03 160);}
 :root[data-bg="carbon"]{--surface-1:oklch(0.17 0.008 250);--surface-2:oklch(0.215 0.008 250);--card:oklch(0.215 0.008 250);--card-line:oklch(0.31 0.008 250);--green-deep:oklch(0.3 0.008 250);--green-deeper:oklch(0.225 0.008 250);--ink:oklch(0.18 0.008 250);--carbon:oklch(0.26 0.008 250);}
 :root[data-bg="azul"]{--surface-1:oklch(0.17 0.05 255);--surface-2:oklch(0.215 0.05 255);--card:oklch(0.215 0.05 255);--card-line:oklch(0.31 0.05 255);--green-deep:oklch(0.3 0.05 255);--green-deeper:oklch(0.225 0.05 255);--ink:oklch(0.18 0.05 255);--carbon:oklch(0.26 0.05 255);}
