@@ -392,10 +392,11 @@
   --green-glow:    oklch(0.84 0.165 159);
   --green-wash:    oklch(0.965 0.014 165);  /* off-white verdoso */
 
-  /* azul agua / laboratorio */
-  --blue:          oklch(0.56 0.125 242);
-  --blue-bright:   oklch(0.70 0.13 240);
-  --blue-wash:     oklch(0.96 0.02 242);
+  /* azul agua / laboratorio — paleta oficial VAXA: celeste #1A8CD5 + azul #0461C3 */
+  --blue:          oklch(0.617 0.145 244);   /* celeste #1A8CD5 */
+  --blue-deep:     oklch(0.505 0.171 256);   /* azul #0461C3 */
+  --blue-bright:   oklch(0.70 0.135 244);
+  --blue-wash:     oklch(0.96 0.022 246);
 
   --white:         oklch(0.99 0.004 165);   /* blanco neutro */
   --paper:         oklch(0.975 0.006 162);
