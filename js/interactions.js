@@ -66,9 +66,8 @@
   if (burger) {
     var ITEMS = [
       ["Inicio", "index.html"], ["Quiénes somos", "quienes-somos.html"],
-      ["Servicios", "servicios.html"], ["Clientes", "clientes.html"],
-      ["Consorcios", "consorcios.html"], ["Cobertura", "cobertura.html"],
-      ["FAQ", "faq.html"], ["Contacto", "contacto.html"]
+      ["Servicios", "servicios.html"], ["Cobertura", "cobertura.html"],
+      ["Contacto", "contacto.html"], ["FAQ", "faq.html"]
     ];
     var menu = document.createElement("div");
     menu.id = "m-menu";

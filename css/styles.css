@@ -486,6 +486,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .section-head p { font-size: 19px; color: var(--grey); max-width: 600px; }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
 .section-head.center .eyebrow { justify-content: center; }
+.section-head.center p { margin-left: auto; margin-right: auto; }
 
 /* --- Botones --- */
 .btn {
@@ -1123,6 +1124,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer { background: var(--green-deeper); color: oklch(0.985 0 0 / 0.7); padding: 64px 0 32px; }
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
 .foot-brand .brand-logo { color: var(--white); }
+.foot-brand .brand-logo svg { height: 68px; width: auto; }
 .foot-brand p { margin-top: 16px; font-size: 14.5px; max-width: 280px; }
 .foot-col h5 { font-family: var(--font-display); color: var(--white); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
 .foot-col a { display: block; font-size: 14.5px; margin-bottom: 10px; transition: color .2s; }

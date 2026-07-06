@@ -294,7 +294,7 @@ body.mnav-open { overflow: hidden; }
 /* ---- (3) Formulario de contacto por mail ---- */
 .mailform { max-width: 760px; margin: 0 auto; }
 .mf-card {
-  background: var(--card); border: 1px solid var(--card-line);
+  background: oklch(0.245 0.05 254); border: 1px solid var(--card-line);
   border-radius: 20px; padding: clamp(24px, 4vw, 40px);
   box-shadow: 0 24px 60px oklch(0.08 0.02 230 / 0.35);
 }
@@ -394,14 +394,16 @@ body.mnav-open { overflow: hidden; }
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.brand-track { display: flex; gap: 18px; width: max-content; animation: brandScroll 36s linear infinite; }
+.brand-track { display: flex; gap: 22px; width: max-content; animation: brandScroll 36s linear infinite; }
 .brand-track:hover { animation-play-state: paused; }
 .brand-chip {
-  display: flex; align-items: center; gap: 10px; padding: 16px 26px;
-  border-radius: 14px; background: var(--card); border: 1px solid var(--card-line);
-  color: var(--tx-dim); font-family: var(--font-display); font-weight: 700; font-size: 14px; white-space: nowrap;
+  display: flex; align-items: center; justify-content: center;
+  width: 200px; height: 92px; padding: 16px 26px; flex: none;
+  border-radius: 14px; background: oklch(0.99 0.002 254); border: 1px solid var(--card-line);
+  transition: transform .3s var(--ease);
 }
-.brand-chip svg { width: 20px; height: 20px; color: var(--green-bright); flex: none; }
+.brand-chip:hover { transform: translateY(-4px); }
+.brand-chip img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 @keyframes brandScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .brand-track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
@@ -624,4 +626,37 @@ body.mnav-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .hm-scan, .hm-alert .dot, .hm-glare, .hm-bar > i::after, .hero-monitor { animation: none; }
   .hm-ico { transition: opacity .4s ease; }
+}
+
+/* ============================================================
+   ANÁLISIS DE AGUA — banner con foto difuminada + cards
+   ============================================================ */
+.aa-section { overflow: hidden; background: var(--ink); color: var(--white); }
+.aa-bg { position: absolute; inset: 0; z-index: 0; }
+.aa-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: blur(22px) saturate(1.2) brightness(.55); transform: scale(1.18);
+}
+.aa-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, oklch(0.20 0.03 250 / 0.78), oklch(0.14 0.02 250 / 0.94));
+}
+.aa-wrap { position: relative; z-index: 2; }
+.aa-section .section-head h2 { color: var(--white); }
+.aa-section .section-head p { color: oklch(0.985 0 0 / 0.82); margin-left: auto; margin-right: auto; }
+
+.aa-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto 40px; }
+.aa-card {
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+  padding: 32px 22px; border-radius: var(--radius);
+  background: oklch(0.985 0 0 / 0.06); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid oklch(0.985 0 0 / 0.14); font-weight: 600; font-size: 16.5px;
+  transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.aa-card:hover { transform: translateY(-6px); border-color: var(--blue-bright); background: oklch(0.985 0 0 / 0.10); }
+.aa-card svg { width: 30px; height: 30px; color: var(--blue-bright); }
+.aa-cta { text-align: center; }
+
+@media (max-width: 780px) {
+  .aa-cards { grid-template-columns: 1fr; }
 }
