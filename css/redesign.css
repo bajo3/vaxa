@@ -72,14 +72,30 @@ a, button, summary, label[for], [role="button"],
 /* ============================================================
    BANDA DE CONFIANZA (Trust & Authority)
    ============================================================ */
+.hero {
+  margin-bottom: -1px;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(160px, 18vw, 260px);
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 0%, oklch(0.08 0.025 160 / 0.72) 64%, oklch(0.08 0.025 160 / 0.96) 100%),
+    radial-gradient(90% 100% at 50% 100%, color-mix(in oklab, var(--green-forest) 24%, transparent) 0%, transparent 70%);
+}
 .ta-trust {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   background:
-    linear-gradient(180deg, oklch(0.08 0.025 160 / 0.93) 0%, oklch(0.10 0.035 160 / 0.88) 42%, oklch(0.12 0.04 166 / 0.96) 100%),
-    radial-gradient(110% 120% at 16% -15%, color-mix(in oklab, var(--green-forest) 58%, transparent) 0%, transparent 55%),
-    url("../assets/img/2de2f842-d937-4302-a620-aad9b21cdec1.png") center bottom / cover no-repeat,
+    linear-gradient(180deg, oklch(0.08 0.025 160 / 0.96) 0%, oklch(0.10 0.035 160 / 0.90) 46%, oklch(0.12 0.04 166 / 0.96) 100%),
+    radial-gradient(110% 120% at 16% -15%, color-mix(in oklab, var(--green-forest) 42%, transparent) 0%, transparent 55%),
+    url("../assets/img/2de2f842-d937-4302-a620-aad9b21cdec1.png") center top / cover no-repeat,
     linear-gradient(180deg, var(--green-deeper) 0%, var(--green-deep) 100%);
   color: var(--tx);
   border-top: 0;
