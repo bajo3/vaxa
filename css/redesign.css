@@ -73,13 +73,29 @@ a, button, summary, label[for], [role="button"],
    BANDA DE CONFIANZA (Trust & Authority)
    ============================================================ */
 .ta-trust {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
-    radial-gradient(120% 140% at 12% -20%, color-mix(in oklab, var(--green-forest) 55%, transparent) 0%, transparent 55%),
+    linear-gradient(180deg, oklch(0.08 0.025 160 / 0.93) 0%, oklch(0.10 0.035 160 / 0.88) 42%, oklch(0.12 0.04 166 / 0.96) 100%),
+    radial-gradient(110% 120% at 16% -15%, color-mix(in oklab, var(--green-forest) 58%, transparent) 0%, transparent 55%),
+    url("../assets/img/2de2f842-d937-4302-a620-aad9b21cdec1.png") center bottom / cover no-repeat,
     linear-gradient(180deg, var(--green-deeper) 0%, var(--green-deep) 100%);
   color: var(--tx);
-  border-block: 1px solid color-mix(in oklab, var(--green-bright) 22%, transparent);
+  border-top: 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--green-bright) 22%, transparent);
+}
+.ta-trust::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, oklch(0.07 0.02 160 / 0.2), oklch(0.09 0.03 160 / 0.62));
 }
 .ta-trust .ta-wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(34px, 5vw, 56px) clamp(20px, 5vw, 40px); }
+.ta-trust .section-head h2 { color: #fff; }
+.ta-trust .eyebrow { color: var(--green-glow); }
 .ta-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 3vw, 34px); }
 .ta-stat { display: flex; flex-direction: column; gap: 6px; padding-left: 16px; border-left: 2px solid color-mix(in oklab, var(--green-bright) 38%, transparent); }
 .ta-stat .ta-ico { width: 26px; height: 26px; color: var(--green-bright); margin-bottom: 4px; }
@@ -98,6 +114,11 @@ a, button, summary, label[for], [role="button"],
   @keyframes ta-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
 @media (max-width: 760px) { .ta-stats { grid-template-columns: repeat(2, 1fr); gap: 22px 18px; } }
+@media (max-width: 560px) {
+  .ta-trust {
+    background-position: center top, center top, 58% bottom, center top;
+  }
+}
 @media (max-width: 380px) { .ta-stats { grid-template-columns: 1fr; } }
 
 /* ============================================================
@@ -471,11 +492,32 @@ body.mnav-open { overflow: hidden; }
 @media (max-width: 560px){ .ta-stats.ta-6 { grid-template-columns: 1fr; } }
 
 /* Especialidades de tanques (lista de 7) */
+.tank-cta-block { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 28px; }
+.tank-cta-note {
+  margin: 0;
+  color: oklch(0.985 0 0 / 0.82);
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.35;
+  font-weight: 600;
+}
 .tank-spec { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 0; }
 .tank-spec .ts-item { display: flex; align-items: center; gap: 11px; padding: 14px 16px; background: var(--card); border: 1px solid var(--card-line); border-radius: 14px; font-weight: 600; color: var(--tx); font-size: 15px; }
 .tank-spec .ts-item svg { width: 20px; height: 20px; color: var(--blue-bright); flex: 0 0 auto; }
 @media (max-width: 900px){ .tank-spec { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 560px){ .tank-spec { grid-template-columns: 1fr; } }
+@media (max-width: 560px){
+  .tank-cta-block { align-items: stretch; }
+  .tank-cta-block .btn { width: 100%; white-space: normal; }
+  .tank-spec { grid-template-columns: 1fr; }
+}
+
+.diag .diag-problem {
+  margin: -2px 0 10px;
+  color: var(--green-forest);
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2vw, 28px);
+  line-height: 1.18;
+  font-weight: 700;
+}
 
 /* Slider antes / después automático */
 .ba-slider { position: relative; aspect-ratio: 4/3; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--card-line); box-shadow: 0 24px 60px oklch(0.08 0.02 230 / 0.4); }
@@ -498,7 +540,44 @@ body.mnav-open { overflow: hidden; }
 .g-cta { text-align: center; margin-top: 30px; }
 
 /* Sección chica "dedicados a" */
-.dedicados .ded-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
+.dedicados .ded-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: 8px;
+}
+.dedicados .tank-aud-chip {
+  min-height: 138px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 18px;
+  border-radius: 16px;
+  font-size: clamp(18px, 1.45vw, 22px);
+  line-height: 1.18;
+  font-weight: 800;
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.96), oklch(0.96 0.01 164 / 0.92));
+  border-color: color-mix(in oklab, var(--green-forest) 20%, var(--card-line));
+  box-shadow: 0 18px 46px oklch(0.12 0.03 160 / 0.08);
+}
+.dedicados .tank-aud-chip svg {
+  width: 30px;
+  height: 30px;
+  color: var(--green-forest);
+}
+@media (max-width: 1100px) {
+  .dedicados .ded-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .dedicados .ded-list { grid-template-columns: 1fr; }
+  .dedicados .tank-aud-chip {
+    min-height: 92px;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 20px;
+  }
+}
 
 /* ============================================================
    HERO — Póster de alerta de temporada (foto full-bleed + bold)
