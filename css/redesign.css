@@ -511,10 +511,13 @@ body.mnav-open { overflow: hidden; }
 .tank-cta-block { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 28px; }
 .tank-cta-note {
   margin: 0;
-  color: oklch(0.985 0 0 / 0.82);
-  font-size: clamp(18px, 1.5vw, 22px);
-  line-height: 1.35;
-  font-weight: 600;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-shadow: 0 8px 28px oklch(0 0 0 / 0.34);
 }
 .tank-spec { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 0; }
 .tank-spec .ts-item { display: flex; align-items: center; gap: 11px; padding: 14px 16px; background: var(--card); border: 1px solid var(--card-line); border-radius: 14px; font-weight: 600; color: var(--tx); font-size: 15px; }
