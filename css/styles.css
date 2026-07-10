@@ -417,8 +417,8 @@
   --cbg: var(--green-wash);
 
   /* --- Tipos --- */
-  --font-display: "Lexend", "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Source Sans 3", "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Argentum Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Argentum Sans", "Helvetica Neue", Arial, sans-serif;
 
   /* --- Layout --- */
   --maxw: 1240px;
