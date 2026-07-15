@@ -4,12 +4,12 @@
    ============================================================ */
 window.VAXA_CONFIG = {
   whatsapp: {
-    fumigacion: "5491100000001",
-    tanques: "5491100000002"
+    fumigacion: "5491130236101",
+    tanques: "5491130236101"
   },
   phone: {
-    fumigacion: "+54 9 11 0000-0001",
-    tanques: "+54 9 11 0000-0002"
+    fumigacion: "+54 11 4582-3379",
+    tanques: "+54 11 4582-3379"
   },
   email: {
     fumigacion: "fumigaciones@vaxafumigaciones.com",
