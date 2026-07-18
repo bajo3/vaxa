@@ -18,7 +18,7 @@
   }
   function buildMessage(servicio, cliente, zona) {
     if (!servicio || servicio === "general") {
-      return "Hola, quiero pedir un presupuesto personalizado a VAXA Fumigaciones.";
+      return "Hola, quiero pedir un presupuesto personalizado a VAXA.";
     }
     var msg = "Hola, quiero consultar por " + servicio;
     if (cliente) msg += " para " + cliente;
@@ -80,7 +80,7 @@
     }).join("");
     menu.innerHTML =
       '<div class="mnav-top">' +
-        '<span class="mnav-brand">VA<b>XA</b> · Fumigaciones</span>' +
+        '<span class="mnav-brand">VA<b>XA</b> · Control de plagas y tanques</span>' +
         '<button class="mnav-close" id="mnav-close" aria-label="Cerrar menú"><svg><use href="#i-x"></use></svg></button>' +
       '</div>' +
       '<nav class="mnav-links">' + linksHtml + '</nav>' +
