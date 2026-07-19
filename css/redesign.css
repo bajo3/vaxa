@@ -540,8 +540,18 @@ body.mnav-open { overflow: hidden; }
 
 /* Foto grupal del header de Quiénes somos */
 .qs-header-photo { position: relative; aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--card-line); box-shadow: 0 24px 60px oklch(0.08 0.02 230 / 0.4); margin: 40px 0 0; }
-.qs-header-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.qs-header-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 @media (max-width: 700px) { .qs-header-photo { aspect-ratio: 4/3; margin-top: 28px; } }
+
+/* Header de Servicios: foto a la izquierda del título */
+.serv-head-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 44px; align-items: center; }
+.serv-head-photo { position: relative; aspect-ratio: 1/1; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--card-line); box-shadow: 0 24px 60px oklch(0.08 0.02 230 / 0.4); margin: 0; }
+.serv-head-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 860px) {
+  .serv-head-grid { grid-template-columns: 1fr; }
+  .serv-head-photo { aspect-ratio: 16/10; max-width: 480px; margin: 0 auto; }
+  .serv-head-grid .section-head { text-align: center; }
+}
 
 /* "Evolución y excelencia": stats + grid bento con fotos de fondo */
 .evo-stats { display: flex; justify-content: center; gap: clamp(18px, 4vw, 56px); flex-wrap: wrap; margin: 34px 0 40px; }
