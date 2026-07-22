@@ -687,6 +687,7 @@
       im.alt = "Temporada de " + p.name.toLowerCase();
       im.loading = "eager";
       im.decoding = "async";
+      if (idx === 0) im.setAttribute("fetchpriority", "high");
       photos.appendChild(im);
       imgs.push(im);
 
