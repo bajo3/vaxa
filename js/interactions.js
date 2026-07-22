@@ -494,7 +494,7 @@
       ["¿El control de plagas sirve para cucarachas todo el año?", "Sí. Las cucarachas no son solo un problema de verano. Ofrecemos control profesional preventivo y correctivo durante todo el año."],
       ["¿También trabajan con piletas?", "Sí. Realizamos análisis y control de agua para piletas de hogares, clubes y espacios recreativos."],
       ["¿Puedo pedir presupuesto por WhatsApp?", "Sí. Podés escribirnos directo por WhatsApp y recibir asesoramiento y un presupuesto personalizado para tu caso."],
-      ["¿Tienen un WhatsApp específico para tanques de agua?", "Sí. Tenemos un contacto separado para control de plagas y otro para tanques de agua, así te atiende quien se especializa en tu consulta."]
+      ["¿Tienen un WhatsApp específico para tanques de agua?", "No hace falta: tenemos un único WhatsApp para todo (control de plagas y tanques de agua), así que escribinos por ese mismo número y te derivamos con quien se especializa en tu consulta."]
     ];
     items.forEach(function (it, i) {
       var div = document.createElement("div");
