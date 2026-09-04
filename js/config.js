@@ -12,8 +12,8 @@ window.VAXA_CONFIG = {
     tanques: "+54 11 4582-3379"
   },
   email: {
-    fumigacion: "fumigaciones@vaxafumigaciones.com",
-    tanques: "tanques@vaxafumigaciones.com"
+    fumigacion: "info@vaxasrl.com.ar",
+    tanques: "info@vaxasrl.com.ar"
   },
 
   /* ============================================================

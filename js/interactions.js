@@ -574,8 +574,8 @@
     var form = document.getElementById("mail-form");
     if (!form) return;
     var err = document.getElementById("mf-error");
-    var EMAIL_FUMIGACION = (CFG.email && CFG.email.fumigacion) || "fumigaciones@vaxafumigaciones.com";
-    var EMAIL_TANQUES = (CFG.email && CFG.email.tanques) || "tanques@vaxafumigaciones.com";
+    var EMAIL_FUMIGACION = (CFG.email && CFG.email.fumigacion) || "info@vaxasrl.com.ar";
+    var EMAIL_TANQUES = (CFG.email && CFG.email.tanques) || "info@vaxasrl.com.ar";
     function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
     function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
