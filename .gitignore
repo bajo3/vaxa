@@ -13,3 +13,8 @@ _extracted_source.html
 
 .vercel
 .agents/
+
+# datos del formulario de presupuestos (personales)
+api/_data/*
+!api/_data/.htaccess
+!api/_data/index.php

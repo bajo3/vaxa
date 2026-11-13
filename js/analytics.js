@@ -6,6 +6,10 @@
 (function () {
   "use strict";
 
+  // Solo con consentimiento de analítica (ver js/consent.js)
+  window.vaxaTrack = function () {};
+  if (!window.vaxaConsent || !window.vaxaConsent.analytics()) return;
+
   var KEY = "vaxa_analytics_events";
   var SKEY = "vaxa_analytics_session";
 
@@ -95,12 +99,12 @@
   }
 
   /* ---------- formulario de mail ---------- */
-  var mform = document.getElementById("mail-form");
+  var mform = document.getElementById("quote-form");
   if (mform) {
     mform.addEventListener("submit", function () {
       // se registra el intento de envío (la validación la maneja interactions.js)
       var serv = (document.getElementById("mf-serv") || {}).value || "";
-      track("form_submit", { tipo: "mail", serv: serv });
+      track("form_submit", { tipo: "presupuesto", serv: serv });
     });
   }
 

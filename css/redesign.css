@@ -17,15 +17,18 @@ html.loading, html.loading body { overflow: hidden; }
 #vaxa-loader .vl-inner { display: flex; flex-direction: column; align-items: center; gap: 18px; width: min(86vw, 280px); }
 
 /* escena: gota bicolor */
-.vl-scene { position: relative; width: 96px; height: 120px; }
-.vl-drop { width: 100%; height: 100%; display: block; filter: drop-shadow(0 14px 34px oklch(0.1 0.02 230 / 0.45)); animation: vl-bob 2.6s var(--ease) infinite; }
+.vl-scene { position: relative; width: 104px; height: 130px; }
+.vl-drop { width: 100%; height: 100%; display: block; filter: drop-shadow(0 12px 30px oklch(0.55 0.18 255 / 0.28)); animation: vl-bob 2.6s var(--ease) infinite; }
 @keyframes vl-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-.vd-outline { fill: oklch(0.985 0 0 / 0.06); stroke: oklch(0.985 0 0 / 0.35); stroke-width: 2; }
-.vd-fill-fumi { fill: var(--green); }
-.vd-fill-tank { fill: var(--blue); }
-.vd-fill-fumi, .vd-fill-tank { animation: vl-rise 2.6s var(--ease) infinite; }
-@keyframes vl-rise { 0%,100% { transform: translateY(8px); } 50% { transform: translateY(0); } }
-.vd-shine { fill: oklch(0.985 0 0 / 0.55); }
+.vd-back { fill: oklch(0.985 0 0 / 0.05); }
+.vd-outline { stroke: oklch(0.985 0 0 / 0.30); stroke-width: 1.5; }
+.vd-divider { fill: oklch(0.985 0 0 / 0.28); }
+.vd-gloss { stroke: oklch(0.985 0 0 / 0.5); stroke-width: 4.5; stroke-linecap: round; }
+.vd-gloss-dot { fill: oklch(0.985 0 0 / 0.6); }
+.vd-wave { animation: vl-wave 1.8s linear infinite; }
+@keyframes vl-wave { from { transform: translateX(0); } to { transform: translateX(60px); } }
+.vd-level { animation: vl-level 2.6s var(--ease) infinite; }
+@keyframes vl-level { 0%,100% { transform: translateY(5px); } 50% { transform: translateY(-3px); } }
 
 .vl-brand { display: flex; color: #fff; }
 .vl-brand svg { width: auto; height: 28px; display: block; }
@@ -41,7 +44,7 @@ html.loading, html.loading body { overflow: hidden; }
 .vl-bar i { display: block; height: 100%; width: 0; border-radius: 100px; background: linear-gradient(90deg, var(--green-bright), var(--blue-bright)); transition: width .25s linear; }
 
 @media (prefers-reduced-motion: reduce) {
-  .vl-drop, .vd-fill-fumi, .vd-fill-tank { animation: none; }
+  .vl-drop, .vd-wave, .vd-level { animation: none; }
 }
 
 /* ---------- Tipografía nueva (Lexend / Source Sans 3) ---------- */
@@ -95,7 +98,6 @@ a, button, summary, label[for], [role="button"],
   background:
     linear-gradient(180deg, oklch(0.08 0.025 160 / 0.96) 0%, oklch(0.10 0.035 160 / 0.90) 46%, oklch(0.12 0.04 166 / 0.96) 100%),
     radial-gradient(110% 120% at 16% -15%, color-mix(in oklab, var(--green-forest) 42%, transparent) 0%, transparent 55%),
-    url("../assets/img/2de2f842-d937-4302-a620-aad9b21cdec1.png") center top / cover no-repeat,
     linear-gradient(180deg, var(--green-deeper) 0%, var(--green-deep) 100%);
   color: var(--tx);
   border-top: 0;
@@ -827,3 +829,168 @@ body.mnav-open { overflow: hidden; }
 @media (max-width: 780px) {
   .aa-cards { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   FOOTER — Franja de habilitación oficial (AGC)
+   ============================================================ */
+.foot-hab {
+  display: flex; align-items: center; gap: 26px; flex-wrap: wrap;
+  padding: 20px 24px; margin-bottom: 30px;
+  border-radius: var(--radius);
+  background: oklch(0.985 0 0 / 0.05);
+  border: 1px solid oklch(0.985 0 0 / 0.12);
+}
+
+.hab-agc { flex: 0 0 auto; display: block; height: 88px; width: auto; }
+
+.hab-qr {
+  flex: 0 0 auto; display: block; line-height: 0;
+  padding: 6px; margin-right: 22px; border-radius: 12px; background: #fff;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.hab-qr img { display: block; width: 106px; height: 106px; image-rendering: pixelated; }
+.hab-qr:hover { transform: translateY(-2px); box-shadow: 0 12px 28px oklch(0 0 0 / 0.35); }
+
+.hab-txt { flex: 1 1 300px; min-width: 0; }
+.hab-tag {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--green-glow); margin-bottom: 7px;
+}
+.hab-meta { margin: 0; font-size: 13px; line-height: 1.5; color: oklch(0.985 0 0 / 0.6); }
+.hab-cta { margin: 10px 0 0; line-height: 1.45; }
+.hab-nb { white-space: nowrap; }
+.hab-link { font-size: 13.5px; font-weight: 600; color: oklch(0.985 0 0 / 0.85); transition: color .2s; }
+.hab-link svg { display: inline-block; width: 13px; height: 13px; margin-left: 6px; vertical-align: -1px; }
+.hab-link:hover { color: var(--green-glow); }
+
+/* Pantallas chicas: el sello y el QR arriba, el texto debajo */
+@media (max-width: 980px) {
+  .hab-agc { height: 72px; }
+}
+@media (max-width: 780px) {
+  .foot-hab { gap: 20px; padding: 20px 18px; }
+  .hab-agc { height: 64px; }
+  .hab-qr { margin-right: 0; }
+}
+
+/* ============================================================
+   HERO — acciones y orden en mobile (título primero)
+   ============================================================ */
+.hero-sub { margin-bottom: 28px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+@media (max-width: 980px) {
+  .hero-monitor { order: 0; max-width: 380px; margin-top: 8px; }
+}
+@media (max-width: 560px) {
+  .hero-actions .btn { width: 100%; justify-content: center; }
+}
+
+/* ============================================================
+   NUESTRO LOCAL — fotos reales + dirección
+   ============================================================ */
+.local-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
+.local-info h2 { font-size: clamp(30px, 3.6vw, 44px); margin: 16px 0 14px; }
+.local-info p { font-size: 18px; color: var(--grey); max-width: 480px; margin-bottom: 26px; }
+.local-actions svg { width: 18px; height: 18px; }
+.local-photos { position: relative; margin: 0; display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; }
+.local-photos img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); border: 1px solid var(--card-line); }
+.local-photos .lp-main { aspect-ratio: 4 / 3; }
+.local-photos .lp-side { aspect-ratio: 3 / 4; object-position: 20% center; }
+@media (max-width: 860px) {
+  .local-grid { grid-template-columns: 1fr; gap: 28px; }
+  .local-photos { grid-template-columns: 1fr; }
+  .local-photos .lp-side { display: none; }
+}
+
+/* ============================================================
+   PALETA SOBRIA — el verde queda solo para acciones (WhatsApp /
+   presupuesto). Detalles decorativos pasan a azul suave.
+   ============================================================ */
+:root { --accent-soft: oklch(0.80 0.075 245); --accent-line: oklch(0.66 0.11 252); }
+
+.eyebrow, .eyebrow.on-dark, .ta-trust .eyebrow, .eyebrow.on-dark { color: var(--accent-soft); }
+.eyebrow::before { background: var(--accent-line); }
+.hero-badge .dot { background: var(--accent-soft); box-shadow: none; animation: none; }
+.hero-trust svg, .cta-trust svg, .cons-benefit svg, .diag-ico svg, .why-ico svg, .faq-icon svg,
+.ta-stat .ta-ico, .ta-badge svg, .evo-ico svg, .vpd-cap-ico, .local-actions svg { color: var(--accent-soft); }
+.hero h1 .hl, .hero-rotator .hr-word, .diag-mono, .camp-season, .cons-overlay .mono,
+.cons-stat .n, .evo-stat b, .serv-link, .quiz-step .q-label, .quiz-summary b, .mnav-brand b { color: var(--accent-soft); }
+.ta-stat { border-left-color: color-mix(in oklab, var(--accent-line) 45%, transparent); }
+.ta-badge { border-color: color-mix(in oklab, var(--accent-line) 35%, transparent); }
+.ta-badge:hover { background: color-mix(in oklab, var(--accent-line) 18%, transparent); border-color: color-mix(in oklab, var(--accent-line) 60%, transparent); }
+.ta-trust, .ta-badges { border-color: color-mix(in oklab, var(--accent-line) 22%, transparent); }
+.evo-featured { border-color: color-mix(in oklab, var(--accent-line) 50%, var(--card-line)); box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent-line) 30%, transparent), 0 20px 50px oklch(0.12 0.03 240 / 0.2); }
+.cov-chip { color: var(--accent-soft); }
+.cov-chip:hover { background: var(--accent-soft); color: var(--blue-deep); }
+.nav.on-hero:not(.scrolled) .nav-links a:hover, .nav.on-hero:not(.scrolled) .nav-links a.active,
+.mnav-links a.active, .mnav-links a:hover, .foot-col a:hover, .hero-scroll:hover, .hab-link:hover, .cli-tab:hover { color: #fff; }
+.mnav-links a::after { color: var(--accent-soft); }
+.camp-dot.active, .faq-item.open .faq-icon { background: var(--accent-soft); }
+.camp-arrow:hover { background: var(--accent-soft); color: var(--blue-deep); }
+.mf-field label .req { color: var(--accent-soft); }
+::selection { background: var(--accent-soft); color: var(--blue-deep); }
+.nav-links a.active { color: var(--accent-soft); }
+
+/* ============================================================
+   MEDICIÓN — banner de cookies, formulario de presupuesto,
+   página de gracias y política de privacidad
+   ============================================================ */
+.ck-banner {
+  position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 2147483000;
+  display: flex; justify-content: center; pointer-events: none;
+}
+.ck-banner[hidden] { display: none; }
+.ck-card {
+  pointer-events: auto; width: 100%; max-width: 560px;
+  background: oklch(0.21 0.055 254); color: var(--tx);
+  border: 1px solid var(--card-line); border-radius: 16px;
+  padding: 18px 20px; box-shadow: 0 20px 50px oklch(0.08 0.02 230 / 0.5);
+  font-size: .9rem; line-height: 1.5;
+}
+.ck-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin: 0 0 6px; }
+.ck-text { margin: 0 0 14px; color: var(--tx-dim); }
+.ck-text a { color: var(--accent-soft); text-decoration: underline; }
+.ck-prefs { display: grid; gap: 10px; margin: 0 0 14px; }
+.ck-prefs[hidden] { display: none; }
+.ck-opt { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; color: var(--tx-dim); font-size: .85rem; }
+.ck-opt input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--blue-bright); flex: none; }
+.ck-opt b { display: block; color: var(--tx); font-weight: 700; }
+.ck-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.ck-btn {
+  font-family: var(--font-display); font-weight: 700; font-size: .88rem;
+  padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--card-line); background: oklch(1 0 0 / 0.06); color: var(--tx);
+  transition: background .2s ease;
+}
+.ck-btn:hover { background: oklch(1 0 0 / 0.12); }
+.ck-btn[hidden] { display: none; }
+.ck-btn.ck-primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.ck-btn.ck-primary:hover { background: var(--blue-bright); }
+@media (max-width: 560px) {
+  .ck-banner { left: 10px; right: 10px; bottom: 10px; }
+  .ck-actions .ck-btn { flex: 1 1 auto; }
+}
+
+/* Formulario de presupuesto */
+.mf-field label .opt { font-weight: 400; color: var(--tx-dim); }
+.mf-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.mf-card { position: relative; }
+.mf-error a { color: inherit; text-decoration: underline; }
+.mf-note a { color: var(--accent-soft); text-decoration: underline; }
+.mf-submit .btn[disabled] { opacity: .65; cursor: progress; }
+
+/* Gracias */
+.thanks { min-height: 60vh; display: flex; align-items: center; padding-top: calc(var(--nav-h) + 40px); }
+.thanks-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+
+/* Política */
+.legal-wrap { max-width: 760px; }
+.legal h2 { font-size: 1.2rem; margin: 30px 0 10px; }
+.legal p, .legal li { color: var(--tx-dim); line-height: 1.65; }
+.legal ul { padding-left: 20px; display: grid; gap: 6px; margin: 0 0 12px; }
+.legal a:not(.btn) { color: var(--accent-soft); text-decoration: underline; }
+.legal b { color: var(--tx); }
+.legal-date { font-size: .85rem; }
+.legal-note { font-size: .85rem; border-left: 2px solid var(--card-line); padding-left: 12px; }
+.foot-legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }

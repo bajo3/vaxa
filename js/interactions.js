@@ -51,14 +51,19 @@
   /* ---------- Nav scroll state ---------- */
   var nav = document.getElementById("nav");
   var hero = document.getElementById("top");
+  // Alto del hero cacheado: leerlo dentro del scroll obligaba a un reflow
+  // en cada evento (layout thrashing). Se recalcula sólo al redimensionar.
+  var heroBottom = 0;
+  function measureHero() { heroBottom = hero ? hero.offsetHeight - 90 : 0; }
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     nav.classList.toggle("scrolled", y > 40);
     // on-hero only while hero is in view
-    var heroBottom = hero ? hero.offsetHeight - 90 : 0;
     nav.classList.toggle("on-hero", y < heroBottom);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", function () { measureHero(); onScroll(); }, { passive: true });
+  measureHero();
   onScroll();
 
   /* ---------- Mobile menu (burger) — full-screen ---------- */
@@ -568,46 +573,111 @@
   })();
 
   /* ============================================================
-     FORMULARIO DE CONTACTO POR MAIL (mailto)
+     FORMULARIO DE PRESUPUESTO (envío real a /api/presupuesto.php)
+     - Solo se considera enviado si el servidor responde ok:true.
+     - Recién ahí se redirige a /gracias, donde se mide generate_lead.
      ============================================================ */
-  (function mailForm() {
-    var form = document.getElementById("mail-form");
+  (function quoteForm() {
+    var form = document.getElementById("quote-form");
     if (!form) return;
     var err = document.getElementById("mf-error");
-    var EMAIL_FUMIGACION = (CFG.email && CFG.email.fumigacion) || "info@vaxasrl.com.ar";
-    var EMAIL_TANQUES = (CFG.email && CFG.email.tanques) || "info@vaxasrl.com.ar";
+    var btn = document.getElementById("mf-send");
+    var btnLabel = btn ? btn.querySelector("span") : null;
+    var renderedAt = Date.now();
+    var leadId = null;      // se mantiene entre reintentos → el servidor no duplica
+    var sending = false;
+    var started = false;
+
+    function newId() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return "l-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12);
+    }
     function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
-    function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+    function serviceType() {
+      var sel = document.getElementById("mf-serv");
+      var opt = sel && sel.options[sel.selectedIndex];
+      var grp = opt && opt.parentNode && opt.parentNode.getAttribute && opt.parentNode.getAttribute("data-service");
+      return grp || "general";
+    }
+    function showError(msg) {
+      if (!err) return;
+      err.innerHTML = msg;
+      err.classList.add("show");
+    }
+
+    // quote_form_start: una vez, cuando la persona carga el primer dato
+    function onFirstInput(e) {
+      if (started || !e.target || e.target.name === "website") return;
+      if (e.type === "input" && !e.target.value) return;
+      started = true;
+      if (window.vaxaPush) window.vaxaPush("quote_form_start", {
+        form_id: "quote_form",
+        service_type: e.target.id === "mf-serv" ? serviceType() : "general",
+        cta_location: "formulario"
+      });
+    }
+    form.addEventListener("input", onFirstInput);
+    form.addEventListener("change", onFirstInput);
+    form.addEventListener("input", function () { if (err) err.classList.remove("show"); });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var nombre = val("mf-nombre"), email = val("mf-email"), tel = val("mf-tel"),
-          serv = val("mf-serv"), zona = val("mf-zona"), msg = val("mf-msg");
-      if (!nombre || !validEmail(email) || !msg) {
-        if (err) err.classList.add("show");
+      if (sending) return;
+      var data = {
+        nombre: val("mf-nombre"), telefono: val("mf-tel"), servicio: val("mf-serv"),
+        localidad: val("mf-zona"), email: val("mf-email"), mensaje: val("mf-msg"),
+        website: val("mf-web")
+      };
+      var digits = data.telefono.replace(/\D/g, "");
+      if (data.nombre.length < 2 || digits.length < 8 || !data.servicio || data.localidad.length < 2 || data.mensaje.length < 5) {
+        showError("Completá nombre, teléfono, servicio, localidad y la consulta.");
         return;
       }
-      if (err) err.classList.remove("show");
-      var subject = "Consulta web VAXA — " + (serv || "Consulta general");
-      var body = [
-        "Nombre: " + nombre,
-        "Email: " + email,
-        tel ? "Teléfono: " + tel : "",
-        "Servicio: " + (serv || "—"),
-        zona ? "Zona: " + zona : "",
-        "",
-        "Mensaje:",
-        msg
-      ].filter(function (l) { return l !== ""; }).join("\n");
-      var to = /tanque|impermeabiliz|agua/i.test(serv) ? EMAIL_TANQUES : EMAIL_FUMIGACION;
-      window.location.href = "mailto:" + to +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-    });
+      if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        showError("Revisá el email (o dejalo vacío: es opcional).");
+        return;
+      }
+      if (!leadId) leadId = newId();
+      data.lead_id = leadId;
+      data.service_type = serviceType();
+      data.elapsed_ms = Date.now() - renderedAt;
+      data.page = location.pathname;
+      data.consent_ads = !!(window.vaxaConsent && window.vaxaConsent.ads());
+      data.attribution = window.vaxaAttribution ? window.vaxaAttribution() : {};
 
-    ["mf-nombre", "mf-email", "mf-msg"].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el && err) el.addEventListener("input", function () { err.classList.remove("show"); });
+      sending = true;
+      if (btn) btn.disabled = true;
+      if (btnLabel) btnLabel.textContent = "Enviando…";
+
+      fetch(form.getAttribute("action"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data),
+        credentials: "same-origin"
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, body: j }; }); })
+        .then(function (res) {
+          if (res.status === 200 && res.body && res.body.ok === true && res.body.lead_id === leadId) {
+            try {
+              sessionStorage.setItem("vaxa_lead_pending", JSON.stringify({
+                lead_id: leadId, service_type: data.service_type, form_id: "quote_form", ts: Date.now()
+              }));
+            } catch (e2) {}
+            window.location.href = "/gracias";
+            return;
+          }
+          throw new Error((res.body && res.body.error) || "server");
+        })
+        .catch(function (e3) {
+          sending = false;
+          if (btn) btn.disabled = false;
+          if (btnLabel) btnLabel.textContent = "Enviar pedido de presupuesto";
+          var wa = waUrl("Hola, quiero pedir un presupuesto a VAXA.", data.service_type === "tanques" ? "tanques" : "");
+          var msg = e3 && e3.message === "rate"
+            ? "Recibimos varios envíos seguidos. Esperá unos minutos o escribinos por "
+            : "No pudimos enviar tu pedido. Probá de nuevo en un momento o escribinos por ";
+          showError(msg + '<a href="' + wa + '" target="_blank" rel="noopener" data-wa="formulario_error" data-area="' + data.service_type + '">WhatsApp</a>.');
+        });
     });
   })();
 

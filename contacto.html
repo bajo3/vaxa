@@ -2,25 +2,15 @@
 <html lang="es" data-accent="emerald" data-bg="navy"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="js/consent.js"></script>
 <title>Contacto | VAXA</title>
 <meta name="description" content="Contactá a VAXA por WhatsApp, teléfono o mail. Atención personalizada para control de plagas y para limpieza, reparación e impermeabilización de tanques de agua.">
 <meta name="keywords" content="contacto control de plagas, whatsapp control de plagas, contacto tanques de agua, presupuesto control de plagas CABA">
 <meta property="og:title" content="Contacto | VAXA">
 <meta property="og:description" content="Escribinos por WhatsApp, teléfono o mail. Atención personalizada para control de plagas y tanques de agua.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/400.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/500.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/600.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/700.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/800.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/600.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/700.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/800.css">
-</noscript>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/argentum/argentum-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/argentum/argentum-700.woff2" crossorigin>
 <link rel="canonical" href="https://www.vaxafumigaciones.com/contacto.html">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/redesign.css">
@@ -46,14 +36,24 @@
     <div class="vl-scene" aria-hidden="true">
       <svg class="vl-drop" viewBox="0 0 120 150" fill="none">
         <defs>
-          <clipPath id="vd-clip"><path d="M60 4C78 34 102 66 102 96a42 42 0 0 1-84 0C18 66 42 34 60 4Z"/></clipPath>
+          <clipPath id="vd-clip"><path d="M60 8C67 28 101 54 101 92a41 41 0 0 1-82 0C19 54 53 28 60 8Z"/></clipPath>
+          <linearGradient id="vd-g-fumi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4BEA78"/><stop offset="1" stop-color="#0B9A40"/></linearGradient>
+          <linearGradient id="vd-g-tank" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C97FF"/><stop offset="1" stop-color="#0A4CC0"/></linearGradient>
+          <mask id="vd-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="150">
+            <g class="vd-level"><path class="vd-wave" fill="#fff" d="M-120 36q15-6 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0V160H-120Z"/></g>
+          </mask>
         </defs>
-        <path class="vd-outline" d="M60 4C78 34 102 66 102 96a42 42 0 0 1-84 0C18 66 42 34 60 4Z"/>
+        <path class="vd-back" d="M60 8C67 28 101 54 101 92a41 41 0 0 1-82 0C19 54 53 28 60 8Z"/>
         <g clip-path="url(#vd-clip)">
-          <rect class="vd-fill-fumi" x="0" y="20" width="60" height="130"/>
-          <rect class="vd-fill-tank" x="60" y="20" width="60" height="130"/>
+          <g mask="url(#vd-mask)">
+            <rect x="0" y="0" width="60" height="150" fill="url(#vd-g-fumi)"/>
+            <rect x="60" y="0" width="60" height="150" fill="url(#vd-g-tank)"/>
+            <rect class="vd-divider" x="59.4" y="0" width="1.2" height="150"/>
+          </g>
+          <path class="vd-gloss" d="M33 78c-3 11-2 23 4 33"/>
+          <circle class="vd-gloss-dot" cx="40" cy="64" r="2.8"/>
         </g>
-        <circle class="vd-shine" cx="44" cy="44" r="6"/>
+        <path class="vd-outline" d="M60 8C67 28 101 54 101 92a41 41 0 0 1-82 0C19 54 53 28 60 8Z"/>
       </svg>
     </div>
     <div class="vl-brand"><svg viewBox="0 0 1012 288" role="img" aria-label="VAXA"><use href="#i-logo-vaxa"></use></svg></div>
@@ -149,58 +149,91 @@
   </div>
 </nav>
 
-<!-- ============ CONTACTO POR MAIL ============ -->
+<!-- ============ PEDIDO DE PRESUPUESTO ============ -->
 <section class="section mailsec">
   <div class="wrap">
     <div class="section-head center reveal in">
-      <h1>Contáctanos</h1>
-      <p>Dejanos los datos y te respondemos a la brevedad. Según el servicio elegido, tu consulta llega al equipo de control de plagas o al de tanques de agua.</p>
+      <h1>Pedí tu presupuesto</h1>
+      <p>Dejanos tus datos y te contactamos a la brevedad. Según el servicio elegido, tu consulta llega al equipo de control de plagas o al de tanques de agua.</p>
     </div>
     <div class="mailform reveal d1">
-      <form class="mf-card" id="mail-form" novalidate>
+      <form class="mf-card" id="quote-form" action="/api/presupuesto.php" method="post" novalidate>
         <div class="mf-grid">
           <div class="mf-field">
             <label for="mf-nombre">Nombre <span class="req">*</span></label>
-            <input id="mf-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required>
+            <input id="mf-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" maxlength="80" required>
           </div>
           <div class="mf-field">
-            <label for="mf-email">Email <span class="req">*</span></label>
-            <input id="mf-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required>
+            <label for="mf-tel">Teléfono o WhatsApp <span class="req">*</span></label>
+            <input id="mf-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ej: 11 2345-6789" maxlength="30" required>
           </div>
           <div class="mf-field">
-            <label for="mf-tel">Teléfono</label>
-            <input id="mf-tel" name="telefono" type="tel" autocomplete="tel" placeholder="(opcional)">
-          </div>
-          <div class="mf-field">
-            <label for="mf-serv">Servicio</label>
-            <select id="mf-serv" name="servicio">
-              <option value="Consulta general">Consulta general</option>
-              <option value="Control de plagas">Control de plagas</option>
-              <option value="Cucarachas">Cucarachas</option>
-              <option value="Ratas / roedores">Ratas / roedores</option>
-              <option value="Murciélagos">Murciélagos</option>
-              <option value="Mosquitos e insectos">Mosquitos e insectos</option>
-              <option value="Limpieza de tanques de agua">Limpieza de tanques de agua</option>
-              <option value="Reparación de tanques de agua">Reparación de tanques de agua</option>
-              <option value="Impermeabilización de tanques">Impermeabilización de tanques</option>
-              <option value="Servicio para consorcio / edificio">Consorcio / edificio</option>
+            <label for="mf-serv">Servicio <span class="req">*</span></label>
+            <select id="mf-serv" name="servicio" required>
+              <option value="">Elegí un servicio</option>
+              <optgroup label="Control de plagas" data-service="plagas">
+                <option value="Fumigación / control de plagas">Fumigación / control de plagas</option>
+                <option value="Cucarachas">Cucarachas</option>
+                <option value="Roedores">Ratas / roedores</option>
+                <option value="Mosquitos">Mosquitos</option>
+                <option value="Murciélagos">Murciélagos</option>
+                <option value="Desinfección de espacios">Desinfección de espacios</option>
+              </optgroup>
+              <optgroup label="Tanques de agua" data-service="tanques">
+                <option value="Limpieza de tanques">Limpieza y desinfección de tanques</option>
+                <option value="Reparación de tanques">Reparación de tanques</option>
+                <option value="Impermeabilización de tanques">Impermeabilización de tanques</option>
+                <option value="Análisis de agua">Análisis de agua</option>
+              </optgroup>
+              <optgroup label="Otro" data-service="general">
+                <option value="Consulta general">Consulta general / varios servicios</option>
+              </optgroup>
             </select>
           </div>
-          <div class="mf-field full">
-            <label for="mf-zona">Zona</label>
-            <input id="mf-zona" name="zona" type="text" placeholder="Ej: Caballito (CABA), San Isidro, Quilmes…">
+          <div class="mf-field">
+            <label for="mf-zona">Localidad <span class="req">*</span></label>
+            <input id="mf-zona" name="localidad" type="text" autocomplete="address-level2" placeholder="Ej: Caballito, San Isidro…" maxlength="80" required>
           </div>
           <div class="mf-field full">
-            <label for="mf-msg">Mensaje <span class="req">*</span></label>
-            <textarea id="mf-msg" name="mensaje" placeholder="Contanos qué necesitás…" required></textarea>
+            <label for="mf-email">Email <span class="opt">(opcional)</span></label>
+            <input id="mf-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" maxlength="120">
           </div>
-          <p class="mf-error" id="mf-error">Completá nombre, un email válido y el mensaje.</p>
+          <div class="mf-field full">
+            <label for="mf-msg">Contanos qué necesitás <span class="req">*</span></label>
+            <textarea id="mf-msg" name="mensaje" placeholder="Ej: edificio de 10 pisos, tanque de 1000 litros, limpieza semestral…" maxlength="2000" required></textarea>
+          </div>
+          <!-- Antispam: campo trampa invisible para personas -->
+          <div class="mf-hp" aria-hidden="true">
+            <label for="mf-web">No completar</label>
+            <input id="mf-web" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="mf-error" id="mf-error" role="alert">Completá nombre, teléfono, servicio, localidad y la consulta.</p>
           <div class="mf-submit">
-            <button class="btn btn-wa btn-lg" type="submit"><svg><use href="#i-mail"></use></svg> Enviar consulta por mail</button>
-            <span class="mf-note">Se abre tu app de correo con todo listo para enviar.</span>
+            <button class="btn btn-wa btn-lg" type="submit" id="mf-send"><svg><use href="#i-mail"></use></svg> <span>Enviar pedido de presupuesto</span></button>
+            <span class="mf-note">Usamos tus datos solo para responderte. <a href="privacidad.html">Política de privacidad</a>.</span>
           </div>
         </div>
       </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUESTRO LOCAL ============ -->
+<section class="section local-sec">
+  <div class="wrap">
+    <div class="local-grid">
+      <div class="local-info reveal">
+        <span class="eyebrow">Nuestro local</span>
+        <h2>Estamos en Av. Directorio 3045, CABA</h2>
+        <p>Nuestro local está habilitado por la Agencia Gubernamental de Control (Solicitud N.º 573770). Podés acercarte o escribirnos y coordinamos la visita.</p>
+        <div class="local-actions">
+          <a class="btn btn-ghost on-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Directorio+3045,+CABA" target="_blank" rel="noopener noreferrer"><svg><use href="#i-pin"></use></svg> Cómo llegar</a>
+        </div>
+      </div>
+      <figure class="local-photos reveal d1">
+        <img class="lp-main" src="assets/img/local-frente-1200.webp" srcset="assets/img/local-frente-800.webp 800w, assets/img/local-frente-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 640px" width="1200" height="900" alt="Frente del local de VAXA en Av. Directorio 3045" loading="lazy" decoding="async">
+        <img class="lp-side" src="assets/img/local-vereda-800.webp" width="800" height="600" alt="Vista del local de VAXA desde la vereda de Av. Directorio" loading="lazy" decoding="async">
+      </figure>
     </div>
   </div>
 </section>
@@ -235,9 +268,22 @@
         <a href="mailto:info@vaxasrl.com.ar">info@vaxasrl.com.ar</a>
       </div>
     </div>
+    <!-- Habilitación oficial (AGC) -->
+    <div class="foot-hab">
+      <img class="hab-agc" src="assets/img/habilitacion/agc-logo.webp" width="600" height="600" alt="Agencia Gubernamental de Control" loading="lazy" decoding="async">
+      <a class="hab-qr" href="https://dghpsh.agcontrol.gob.ar/SSIT/Mobile/GetObleatramite.aspx?id_solicitud=NTczNzcw" target="_blank" rel="noopener noreferrer" aria-label="Verificar online la habilitación de VAXA en la Agencia Gubernamental de Control">
+        <img src="assets/img/habilitacion/qr-habilitacion.png" width="405" height="405" alt="Código QR para verificar la habilitación de VAXA" loading="lazy" decoding="async">
+      </a>
+      <div class="hab-txt">
+        <span class="hab-tag">Habilitación oficial</span>
+        <p class="hab-meta">SMP 48 - 021 - 031A · Solicitud N.º 573770</p>
+        <p class="hab-cta"><a class="hab-link" href="https://dghpsh.agcontrol.gob.ar/SSIT/Mobile/GetObleatramite.aspx?id_solicitud=NTczNzcw" target="_blank" rel="noopener noreferrer">Escaneá el QR o verificá la habilitación <span class="hab-nb">online<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a></p>
+      </div>
+    </div>
     <div class="foot-bottom">
       <span>© 2026 VAXA · Control de plagas y mantenimiento de tanques de agua en CABA y GBA</span>
       <span>Atendemos CABA y Gran Buenos Aires.</span>
+      <span class="foot-legal"><a href="privacidad.html">Política de privacidad</a> · <a href="#" data-cookie-prefs>Preferencias de cookies</a></span>
     </div>
   </div>
 </footer>
@@ -264,5 +310,6 @@
 <script src="js/config.js" defer></script>
 <script src="js/loader.js" defer></script>
 <script src="js/interactions.js" defer></script>
+<script src="js/tracking.js" defer></script>
 <script src="js/analytics.js" defer></script>
 </body></html>

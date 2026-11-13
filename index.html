@@ -2,25 +2,19 @@
 <html lang="es" data-accent="emerald" data-bg="navy"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="js/consent.js"></script>
 <title>VAXA | Control de plagas y mantenimiento de tanques de agua en CABA y GBA</title>
 <meta name="description" content="VAXA: control de plagas, y limpieza, reparación e impermeabilización de tanques de agua en CABA y Gran Buenos Aires. Atención personalizada por WhatsApp para hogares, empresas, consorcios y administraciones.">
 <meta name="keywords" content="control de plagas en CABA, control de plagas en Gran Buenos Aires, control de plagas, control de cucarachas, limpieza de tanques, reparación de tanques de agua, impermeabilización de tanques, análisis de agua potable, control de plagas para consorcios, control de plagas para empresas, control de roedores, control de murciélagos, control de mosquitos, mantenimiento de tanques para edificios">
 <meta property="og:title" content="VAXA | Control de plagas y mantenimiento de tanques de agua en CABA y GBA">
 <meta property="og:description" content="Soluciones profesionales de control de plagas y mantenimiento integral de tanques de agua (limpieza, reparación, impermeabilización) para hogares, empresas, consorcios e instituciones.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/400.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/500.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/600.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/700.css" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/800.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/600.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/700.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/argentum-sans@5.2.5/800.css">
-</noscript>
+<link rel="preload" as="image" fetchpriority="high"
+      href="assets/img/hero-caba-1200.webp"
+      imagesrcset="assets/img/hero-caba-800.webp 800w, assets/img/hero-caba-1200.webp 1200w, assets/img/hero-caba.webp 1672w"
+      imagesizes="100vw">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/argentum/argentum-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/argentum/argentum-700.woff2" crossorigin>
 <link rel="canonical" href="https://www.vaxafumigaciones.com/">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/redesign.css">
@@ -49,14 +43,24 @@
     <div class="vl-scene" aria-hidden="true">
       <svg class="vl-drop" viewBox="0 0 120 150" fill="none">
         <defs>
-          <clipPath id="vd-clip"><path d="M60 4C78 34 102 66 102 96a42 42 0 0 1-84 0C18 66 42 34 60 4Z"/></clipPath>
+          <clipPath id="vd-clip"><path d="M60 8C67 28 101 54 101 92a41 41 0 0 1-82 0C19 54 53 28 60 8Z"/></clipPath>
+          <linearGradient id="vd-g-fumi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4BEA78"/><stop offset="1" stop-color="#0B9A40"/></linearGradient>
+          <linearGradient id="vd-g-tank" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C97FF"/><stop offset="1" stop-color="#0A4CC0"/></linearGradient>
+          <mask id="vd-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="150">
+            <g class="vd-level"><path class="vd-wave" fill="#fff" d="M-120 36q15-6 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0V160H-120Z"/></g>
+          </mask>
         </defs>
-        <path class="vd-outline" d="M60 4C78 34 102 66 102 96a42 42 0 0 1-84 0C18 66 42 34 60 4Z"/>
+        <path class="vd-back" d="M60 8C67 28 101 54 101 92a41 41 0 0 1-82 0C19 54 53 28 60 8Z"/>
         <g clip-path="url(#vd-clip)">
-          <rect class="vd-fill-fumi" x="0" y="20" width="60" height="130"/>
-          <rect class="vd-fill-tank" x="60" y="20" width="60" height="130"/>
+          <g mask="url(#vd-mask)">
+            <rect x="0" y="0" width="60" height="150" fill="url(#vd-g-fumi)"/>
+            <rect x="60" y="0" width="60" height="150" fill="url(#vd-g-tank)"/>
+            <rect class="vd-divider" x="59.4" y="0" width="1.2" height="150"/>
+          </g>
+          <path class="vd-gloss" d="M33 78c-3 11-2 23 4 33"/>
+          <circle class="vd-gloss-dot" cx="40" cy="64" r="2.8"/>
         </g>
-        <circle class="vd-shine" cx="44" cy="44" r="6"/>
+        <path class="vd-outline" d="M60 8C67 28 101 54 101 92a41 41 0 0 1-82 0C19 54 53 28 60 8Z"/>
       </svg>
     </div>
     <div class="vl-brand"><svg viewBox="0 0 1012 288" role="img" aria-label="VAXA"><use href="#i-logo-vaxa"></use></svg></div>
@@ -153,7 +157,10 @@
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-bg">
-    <img class="hero-photo" src="assets/img/hero-caba.webp" alt="Avenida de CABA entre árboles y edificios" fetchpriority="high" loading="eager" decoding="async">
+    <img class="hero-photo" src="assets/img/hero-caba-1200.webp"
+         srcset="assets/img/hero-caba-800.webp 800w, assets/img/hero-caba-1200.webp 1200w, assets/img/hero-caba.webp 1672w"
+         sizes="100vw" width="1672" height="941"
+         alt="Avenida de CABA entre árboles y edificios" fetchpriority="high" loading="eager" decoding="async">
   </div>
   <div class="hero-grade"></div>
   <div class="hero-scan"></div>
@@ -162,13 +169,17 @@
   <div class="wrap">
     <div class="hero-grid hero-grid-2">
       <div class="hero-copy">
-        <span class="hero-badge reveal in"><span class="dot"></span>Sistema sanitario activo · CABA + GBA</span>
+        <span class="hero-badge reveal in"><span class="dot"></span>Habilitación oficial AGC · Solicitud N.º 573770</span>
         <h1 class="reveal in">Control de plagas y mantenimiento de <span class="tw">tanques de agua potable</span></h1>
         <p class="hero-city reveal in">en CABA y Gran Buenos Aires</p>
-        <p class="hero-sub reveal in d1">Soluciones profesionales de control de plagas y mantenimiento de <span class="tw">tanques de agua</span> —limpieza, reparación e impermeabilización— para hogares, empresas, consorcios, administraciones, escuelas e instituciones.</p>
+        <p class="hero-sub reveal in d1">Desinsectación, desratización y limpieza, reparación e impermeabilización de tanques para consorcios, empresas, instituciones y hogares.</p>
+        <div class="hero-actions reveal in d2">
+          <a class="btn btn-wa btn-lg" data-wa="un presupuesto" href="#">Pedir presupuesto por WhatsApp</a>
+          <a class="btn btn-ghost on-dark btn-lg" href="servicios.html">Ver servicios</a>
+        </div>
         <div class="hero-trust reveal in d3">
-          <span><svg><use href="#i-shield"></use></svg> Trabajo profesional certificado</span>
-          <span><svg><use href="#i-team"></use></svg> Atención personalizada</span>
+          <span><svg><use href="#i-shield"></use></svg> Habilitados por la AGC</span>
+          <span><svg><use href="#i-store"></use></svg> Local en Av. Directorio 3045</span>
           <span><svg><use href="#i-pin"></use></svg> CABA y Gran Buenos Aires</span>
         </div>
       </div>
@@ -383,7 +394,7 @@
         <div class="diag-body">
           <h3>Cucarachas</h3>
           <p>Control de plagas con tratamientos preventivos y correctivos durante todo el año.</p>
-          <a class="diag-btn" data-wa="Cucarachas" href="#"><svg><use href="#i-wa"></use></svg> Eliminar cucarachas</a>
+          <a class="diag-btn" data-wa="Cucarachas" data-area="plagas" href="#"><svg><use href="#i-wa"></use></svg> Eliminar cucarachas</a>
         </div>
       </article>
 
@@ -399,7 +410,7 @@
         <div class="diag-body">
           <h3>Roedores</h3>
           <p>Control de plagas y control para hogares, comercios, edificios y empresas.</p>
-          <a class="diag-btn" data-wa="Roedores" href="#"><svg><use href="#i-wa"></use></svg> Consultar por roedores</a>
+          <a class="diag-btn" data-wa="Roedores" data-area="plagas" href="#"><svg><use href="#i-wa"></use></svg> Consultar por roedores</a>
         </div>
       </article>
 
@@ -415,7 +426,7 @@
         <div class="diag-body">
           <h3>Murciélagos y mosquitos</h3>
           <p>Intervención profesional y segura para balcones, terrazas, aleros y espacios abiertos.</p>
-          <a class="diag-btn" data-wa="Murciélagos y mosquitos" href="#"><svg><use href="#i-wa"></use></svg> Consultar servicio</a>
+          <a class="diag-btn" data-wa="Murciélagos y mosquitos" data-area="plagas" href="#"><svg><use href="#i-wa"></use></svg> Consultar servicio</a>
         </div>
       </article>
 
@@ -549,9 +560,22 @@
         <a href="mailto:info@vaxasrl.com.ar">info@vaxasrl.com.ar</a>
       </div>
     </div>
+    <!-- Habilitación oficial (AGC) -->
+    <div class="foot-hab">
+      <img class="hab-agc" src="assets/img/habilitacion/agc-logo.webp" width="600" height="600" alt="Agencia Gubernamental de Control" loading="lazy" decoding="async">
+      <a class="hab-qr" href="https://dghpsh.agcontrol.gob.ar/SSIT/Mobile/GetObleatramite.aspx?id_solicitud=NTczNzcw" target="_blank" rel="noopener noreferrer" aria-label="Verificar online la habilitación de VAXA en la Agencia Gubernamental de Control">
+        <img src="assets/img/habilitacion/qr-habilitacion.png" width="405" height="405" alt="Código QR para verificar la habilitación de VAXA" loading="lazy" decoding="async">
+      </a>
+      <div class="hab-txt">
+        <span class="hab-tag">Habilitación oficial</span>
+        <p class="hab-meta">SMP 48 - 021 - 031A · Solicitud N.º 573770</p>
+        <p class="hab-cta"><a class="hab-link" href="https://dghpsh.agcontrol.gob.ar/SSIT/Mobile/GetObleatramite.aspx?id_solicitud=NTczNzcw" target="_blank" rel="noopener noreferrer">Escaneá el QR o verificá la habilitación <span class="hab-nb">online<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a></p>
+      </div>
+    </div>
     <div class="foot-bottom">
       <span>© 2026 VAXA · Control de plagas y mantenimiento de tanques de agua en CABA y GBA</span>
       <span>Atendemos CABA y Gran Buenos Aires.</span>
+      <span class="foot-legal"><a href="privacidad.html">Política de privacidad</a> · <a href="#" data-cookie-prefs>Preferencias de cookies</a></span>
     </div>
   </div>
 </footer>
@@ -588,7 +612,7 @@
       <h3>Preparate para la temporada</h3>
       <p>Antes de las lluvias, dejá tu tanque de agua limpio, reparado e impermeabilizado, y mantené tu espacio libre de plagas todo el año. Pedí tu presupuesto de temporada por WhatsApp.</p>
       <div class="popup-actions">
-        <a class="btn btn-wa" data-wa="la promo de temporada de control de plagas" href="#"><svg><use href="#i-wa"></use></svg> Control de plagas por WhatsApp</a>
+        <a class="btn btn-wa" data-wa="la promo de temporada de control de plagas" data-area="plagas" href="#"><svg><use href="#i-wa"></use></svg> Control de plagas por WhatsApp</a>
         <a class="btn btn-tank" data-wa="la promo de temporada de tanques de agua" data-area="tanques" href="#"><svg><use href="#i-wa"></use></svg> Tanques por WhatsApp</a>
         <button class="btn btn-ghost" id="popup-later">Ahora no</button>
       </div>
@@ -598,5 +622,6 @@
 <script src="js/config.js" defer></script>
 <script src="js/loader.js" defer></script>
 <script src="js/interactions.js" defer></script>
+<script src="js/tracking.js" defer></script>
 <script src="js/analytics.js" defer></script>
 </body></html>

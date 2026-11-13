@@ -1,0 +1,39 @@
+# ============================================================
+# VAXA — cabeceras de caché (Hostinger / LiteSpeed)
+# ============================================================
+
+<IfModule mod_headers.c>
+  # HTML: revalidar siempre, así un cambio de contenido se ve al instante.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Imágenes y fuentes: 1 año. Si reemplazás una imagen, cambiale el nombre
+  # de archivo (o los visitantes que ya la tienen cacheada seguirán viendo la vieja).
+  <FilesMatch "\.(webp|png|jpe?g|gif|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # CSS y JS: 1 semana. Corto a propósito: no hay versionado en el nombre,
+  # así que un deploy se propaga solo en pocos días.
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+# ============================================================
+# Rutas limpias para la página de gracias y la política
+# (el formulario redirige a https://vaxasrl.com.ar/gracias)
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^gracias/?$ gracias.html [L]
+  RewriteRule ^privacidad/?$ privacidad.html [L]
+</IfModule>
+
+# Archivos de configuración del endpoint: no se sirven
+<FilesMatch "^config\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>

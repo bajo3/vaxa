@@ -56,13 +56,29 @@
       loader.classList.add("done");
       document.documentElement.classList.remove("loading");
       setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 650);
-    }, reduce ? 60 : 280);
+    }, reduce ? 0 : 120);
   }
 
-  // cierra cuando todo cargó…
-  if (document.readyState === "complete") setTimeout(finish, reduce ? 0 : 350);
-  else window.addEventListener("load", function () { setTimeout(finish, reduce ? 0 : 350); });
+  // Cierra en cuanto el hero está listo (no esperamos al load de toda la página:
+  // eso retrasaba el LCP hasta que bajaba la última imagen del sitio).
+  var START = (window.performance && performance.now) ? performance.now() : Date.now();
+  var MIN_MS = reduce ? 0 : 450;    // mínimo visible, para que no sea un parpadeo
+  var MAX_MS = reduce ? 800 : 2500; // tope duro, por si algo falla
 
-  // …o por timeout máximo, para no quedar trabado nunca
-  setTimeout(finish, reduce ? 800 : 5000);
+  function finishWhenReady() {
+    var now = (window.performance && performance.now) ? performance.now() : Date.now();
+    setTimeout(finish, Math.max(0, MIN_MS - (now - START)));
+  }
+
+  var heroImg = document.querySelector(".hero-photo");
+  if (!heroImg || heroImg.complete) {
+    if (document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", finishWhenReady);
+    else finishWhenReady();
+  } else {
+    heroImg.addEventListener("load", finishWhenReady);
+    heroImg.addEventListener("error", finishWhenReady);
+  }
+
+  setTimeout(finish, MAX_MS);
 })();
