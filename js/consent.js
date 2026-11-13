@@ -17,7 +17,7 @@
      Mientras quede el valor de ejemplo, GTM NO se carga (no se
      inventan IDs) y los eventos solo quedan en window.dataLayer. */
   var CONFIG = window.VAXA_TRACKING = window.VAXA_TRACKING || {
-    gtmId: "GTM-XXXXXXX",
+    gtmId: "GTM-PVVRNLH3",
     consentVersion: 1,          // subir si cambian las categorías → se vuelve a preguntar
     privacyUrl: "privacidad.html"
   };
