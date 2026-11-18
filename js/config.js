@@ -38,7 +38,7 @@ window.VAXA_CONFIG = {
      ============================================================ */
   temporada: {
     modo: "manual",
-    activas: ["roedores"],
+    activas: ["cucarachas"],
     rotar: true,
     intervalo: 4,
     etiqueta: "EN TEMPORADA",
