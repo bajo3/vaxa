@@ -21,7 +21,7 @@ Este documento explica qué quedó instalado en el sitio y qué falta configurar
 | Hosting | **Hostinger** (hPanel, cabeceras `platform: hostinger`, `.htaccess` LiteSpeed). La carpeta `.vercel` y el archivo `vercel.json` son de un deploy anterior. |
 | Tracking previo | No había GA4, GTM, Google Ads ni Meta Pixel. Solo existía `js/analytics.js`, una demo que guarda eventos en el `localStorage` de cada navegador para el panel `/admin`. No envía datos a ningún lado. |
 | WhatsApp | Hay 55 botones con `data-wa`. `js/interactions.js` les arma el link `wa.me/5491130236101?text=…`. Los de tanques llevan `data-area="tanques"`. |
-| Teléfono | Hay enlaces `tel:+541145823379` en el footer y en la barra fija mobile, en las 6 páginas. |
+| Teléfono | Hay enlaces `tel:+541130236101` en el footer y en la barra fija mobile, en las 6 páginas. |
 | Formulario | El de `contacto.html` usaba `mailto:`: abría el programa de correo y **no confirmaba el envío**. No había backend ni página de gracias. |
 | Duplicación | No había riesgo, porque no existía ninguna instalación previa. |
 

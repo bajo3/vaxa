@@ -16,11 +16,23 @@
   function waUrl(message, area) {
     return "https://wa.me/" + waNumber(area) + "?text=" + encodeURIComponent(message);
   }
+  // Origen en el texto prearmado: así se sabe si la consulta vino de un anuncio o de la web.
+  // Visita desde Google Ads = gclid/gbraid/wbraid o utm_medium=cpc en esta visita o en la sesión.
+  var FROM_AD = (function () {
+    var q = location.search;
+    var ad = /[?&](gclid|gbraid|wbraid)=/.test(q) || /[?&]utm_medium=(cpc|ppc|paid)/i.test(q);
+    try {
+      if (ad) sessionStorage.setItem("vaxa_from_ad", "1");
+      else ad = sessionStorage.getItem("vaxa_from_ad") === "1";
+    } catch (e) {}
+    return ad;
+  })();
   function buildMessage(servicio, cliente, zona) {
+    var intro = FROM_AD ? "Hola VAXA, vi su anuncio en Google" : "Hola VAXA, los contacto desde la web";
     if (!servicio || servicio === "general") {
-      return "Hola, quiero pedir un presupuesto personalizado a VAXA.";
+      return intro + ". Quiero pedir un presupuesto.";
     }
-    var msg = "Hola, quiero consultar por " + servicio;
+    var msg = intro + ". Quiero consultar por " + servicio;
     if (cliente) msg += " para " + cliente;
     if (zona) msg += " en " + zona;
     msg += ".";
@@ -471,7 +483,7 @@
       var serv = state.servicio || "un servicio";
       var cli = state.cliente || "mi espacio";
       var zona = state.zona || "mi zona";
-      var msg = "Hola, quiero consultar por " + serv + " para " + cli + " en " + zona + ".";
+      var msg = buildMessage(serv, cli, zona);
       sendBtn.setAttribute("href", waUrl(msg));
       sendBtn.setAttribute("target", "_blank");
       sendBtn.setAttribute("rel", "noopener");
@@ -501,20 +513,24 @@
       ["¿Puedo pedir presupuesto por WhatsApp?", "Sí. Podés escribirnos directo por WhatsApp y recibir asesoramiento y un presupuesto personalizado para tu caso."],
       ["¿Tienen un WhatsApp específico para tanques de agua?", "No hace falta: tenemos un único WhatsApp para todo (control de plagas y tanques de agua), así que escribinos por ese mismo número y te derivamos con quien se especializa en tu consulta."]
     ];
-    items.forEach(function (it, i) {
-      var div = document.createElement("div");
-      div.className = "faq-item";
-      div.innerHTML =
-        '<button class="faq-q"><h3>' + it[0] + '</h3><span class="faq-icon"><svg><use href="#i-plus"/></svg></span></button>' +
-        '<div class="faq-a"><div class="faq-a-inner"><p>' + it[1] + '</p></div></div>';
-      var btn = div.querySelector(".faq-q");
-      var ans = div.querySelector(".faq-a");
-      btn.addEventListener("click", function () {
+    // Si las preguntas ya vienen en el HTML (faq.html), solo se agrega el abrir/cerrar.
+    // Así buscadores y asistentes de IA las leen sin ejecutar scripts.
+    if (!wrap.querySelector(".faq-item")) {
+      items.forEach(function (it) {
+        var div = document.createElement("div");
+        div.className = "faq-item";
+        div.innerHTML =
+          '<button class="faq-q"><h3>' + it[0] + '</h3><span class="faq-icon"><svg><use href="#i-plus"/></svg></span></button>' +
+          '<div class="faq-a"><div class="faq-a-inner"><p>' + it[1] + '</p></div></div>';
+        wrap.appendChild(div);
+      });
+    }
+    wrap.querySelectorAll(".faq-item").forEach(function (div) {
+      div.querySelector(".faq-q").addEventListener("click", function () {
         var isOpen = div.classList.contains("open");
         wrap.querySelectorAll(".faq-item.open").forEach(function (o) { o.classList.remove("open"); });
         if (!isOpen) { div.classList.add("open"); }
       });
-      wrap.appendChild(div);
     });
   })();
 
@@ -595,6 +611,7 @@
     function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
     function serviceType() {
       var sel = document.getElementById("mf-serv");
+      if (sel && !sel.options) return sel.getAttribute("data-service") || "general"; // campo oculto
       var opt = sel && sel.options[sel.selectedIndex];
       var grp = opt && opt.parentNode && opt.parentNode.getAttribute && opt.parentNode.getAttribute("data-service");
       return grp || "general";
@@ -626,11 +643,14 @@
       var data = {
         nombre: val("mf-nombre"), telefono: val("mf-tel"), servicio: val("mf-serv"),
         localidad: val("mf-zona"), email: val("mf-email"), mensaje: val("mf-msg"),
-        website: val("mf-web")
+        conocio: val("mf-conocio"), website: val("mf-web")
       };
       var digits = data.telefono.replace(/\D/g, "");
-      if (data.nombre.length < 2 || digits.length < 8 || !data.servicio || data.localidad.length < 2 || data.mensaje.length < 5) {
-        showError("Completá nombre, teléfono, servicio, localidad y la consulta.");
+      // El formulario corto de las páginas de servicio no tiene campo de consulta
+      var msgEl = document.getElementById("mf-msg");
+      var needsMsg = !!(msgEl && msgEl.required);
+      if (data.nombre.length < 2 || digits.length < 8 || !data.servicio || data.localidad.length < 2 || (needsMsg && data.mensaje.length < 5)) {
+        showError(needsMsg ? "Completá nombre, teléfono, servicio, localidad y la consulta." : (document.getElementById("mf-serv") && document.getElementById("mf-serv").options ? "Completá nombre, teléfono, servicio y barrio o partido." : "Completá nombre, teléfono y barrio o partido."));
         return;
       }
       if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
@@ -672,7 +692,7 @@
           sending = false;
           if (btn) btn.disabled = false;
           if (btnLabel) btnLabel.textContent = "Enviar pedido de presupuesto";
-          var wa = waUrl("Hola, quiero pedir un presupuesto a VAXA.", data.service_type === "tanques" ? "tanques" : "");
+          var wa = waUrl(buildMessage("general"), data.service_type === "tanques" ? "tanques" : "");
           var msg = e3 && e3.message === "rate"
             ? "Recibimos varios envíos seguidos. Esperá unos minutos o escribinos por "
             : "No pudimos enviar tu pedido. Probá de nuevo en un momento o escribinos por ";

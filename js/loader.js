@@ -17,6 +17,7 @@
 
   var phrases = ["Preparando el servicio…", "Control de plagas…", "Limpieza y reparación de tanques…", "Casi listo…"];
   var pi = 0;
+  if (text) text.textContent = phrases[0];
   var phraseTimer = setInterval(function () {
     pi = (pi + 1) % phrases.length;
     if (text) text.textContent = phrases[pi];

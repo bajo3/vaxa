@@ -70,6 +70,9 @@ $localidad = clean((string) ($in['localidad'] ?? ''), 80);
 $email     = clean((string) ($in['email'] ?? ''), 120);
 $mensaje   = clean((string) ($in['mensaje'] ?? ''), 2000, true);
 $page      = clean((string) ($in['page'] ?? ''), 120);
+$CONOCIO   = ['Google', 'Google Maps', 'Instagram o Facebook', 'IA', 'Recomendado', 'Cliente anterior', 'Otro'];
+$conocio   = clean((string) ($in['conocio'] ?? ''), 40);
+if (!in_array($conocio, $CONOCIO, true)) $conocio = '';
 
 $SERVICIOS = [
     'Fumigación / control de plagas' => 'plagas', 'Cucarachas' => 'plagas', 'Roedores' => 'plagas',
@@ -84,7 +87,8 @@ if (mb_strlen($nombre) < 2) $errors[] = 'nombre';
 if (strlen((string) $digits) < 8) $errors[] = 'telefono';
 if (!isset($SERVICIOS[$servicio])) $errors[] = 'servicio';
 if (mb_strlen($localidad) < 2) $errors[] = 'localidad';
-if (mb_strlen($mensaje) < 5) $errors[] = 'mensaje';
+// El formulario corto (páginas de servicio) no tiene consulta; si viene, que tenga contenido
+if ($mensaje !== '' && mb_strlen($mensaje) < 5) $errors[] = 'mensaje';
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'email';
 if ($errors) respond(422, ['ok' => false, 'error' => 'validation', 'fields' => $errors]);
 $serviceType = $SERVICIOS[$servicio];
@@ -126,9 +130,10 @@ $body = implode("\n", array_filter([
     $email !== '' ? "Email:     $email" : null,
     "Servicio:  $servicio ($tipo)",
     "Localidad: $localidad",
+    $conocio !== '' ? "Nos conoció por: $conocio" : null,
     "",
     "Consulta:",
-    $mensaje,
+    $mensaje !== '' ? $mensaje : '(formulario corto, sin detalle)',
     "",
     "----",
     "ID de solicitud: $leadId",
@@ -156,7 +161,7 @@ if ($dir && $cfg['store_backup']) {
     $row = [
         'lead_id' => $leadId, 'ts' => date('c'), 'mail_ok' => $sent, 'nombre' => $nombre,
         'telefono' => $telefono, 'email' => $email, 'servicio' => $servicio, 'service_type' => $serviceType,
-        'localidad' => $localidad, 'mensaje' => $mensaje, 'page' => $page, 'origen' => $attrLines,
+        'localidad' => $localidad, 'mensaje' => $mensaje, 'page' => $page, 'conocio' => $conocio, 'origen' => $attrLines,
     ];
     @file_put_contents("$dir/leads-" . date('Y-m') . '.jsonl', json_encode($row, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
 }

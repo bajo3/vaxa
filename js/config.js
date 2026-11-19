@@ -8,8 +8,8 @@ window.VAXA_CONFIG = {
     tanques: "5491130236101"
   },
   phone: {
-    fumigacion: "+54 11 4582-3379",
-    tanques: "+54 11 4582-3379"
+    fumigacion: "+54 11 3023-6101",
+    tanques: "+54 11 3023-6101"
   },
   email: {
     fumigacion: "info@vaxasrl.com.ar",

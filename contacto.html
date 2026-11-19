@@ -2,7 +2,7 @@
 <html lang="es" data-accent="emerald" data-bg="navy"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="js/consent.js?v=20261118"></script>
+<script src="js/consent.js?v=20261119"></script>
 <title>Contacto | VAXA</title>
 <meta name="description" content="Contactá a VAXA por WhatsApp, teléfono o mail. Atención personalizada para control de plagas y para limpieza, reparación e impermeabilización de tanques de agua.">
 <meta name="keywords" content="contacto control de plagas, whatsapp control de plagas, contacto tanques de agua, presupuesto control de plagas CABA">
@@ -12,8 +12,8 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/argentum/argentum-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/argentum/argentum-700.woff2" crossorigin>
 <link rel="canonical" href="https://www.vaxafumigaciones.com/contacto.html">
-<link rel="stylesheet" href="css/styles.css?v=20261118">
-<link rel="stylesheet" href="css/redesign.css?v=20261118">
+<link rel="stylesheet" href="css/styles.css?v=20261119">
+<link rel="stylesheet" href="css/redesign.css?v=20261119">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="theme-color" content="#011a38">
 <meta name="robots" content="index,follow">
@@ -25,7 +25,7 @@
 <meta name="twitter:description" content="Escribinos por WhatsApp, teléfono o mail. Atención personalizada para control de plagas y tanques de agua.">
 <meta name="twitter:image" content="assets/img/serv-plagas.webp">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"PestControlService","name":"VAXA","description":"Control de plagas y mantenimiento integral de tanques de agua (limpieza, reparación, impermeabilización) en CABA y Gran Buenos Aires.","image":"assets/img/serv-plagas.webp","telephone":"+541145823379","priceRange":"$","areaServed":[{"@type":"City","name":"Ciudad Autónoma de Buenos Aires"},{"@type":"AdministrativeArea","name":"Gran Buenos Aires"}],"address":{"@type":"PostalAddress","addressRegion":"Buenos Aires","addressCountry":"AR"},"serviceType":["Control de plagas","Limpieza de tanques de agua","Reparación de tanques de agua","Impermeabilización de tanques","Análisis de agua potable"],"contactPoint":[{"@type":"ContactPoint","telephone":"+541145823379","contactType":"customer service","areaServed":"AR","availableLanguage":"es","email":"info@vaxasrl.com.ar"}]}
+{"@context":"https://schema.org","@type":"PestControlService","name":"VAXA","description":"Control de plagas y mantenimiento integral de tanques de agua (limpieza, reparación, impermeabilización) en CABA y Gran Buenos Aires.","image":"assets/img/serv-plagas.webp","telephone":"+541130236101","priceRange":"$","areaServed":[{"@type":"City","name":"Ciudad Autónoma de Buenos Aires"},{"@type":"AdministrativeArea","name":"Gran Buenos Aires"}],"address":{"@type":"PostalAddress","streetAddress":"Av. Directorio 3045","addressLocality":"Ciudad Autónoma de Buenos Aires","addressRegion":"CABA","postalCode":"C1406HAG","addressCountry":"AR"},"geo":{"@type":"GeoCoordinates","latitude":-34.6359928,"longitude":-58.4695569},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"17:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"}],"serviceType":["Control de plagas","Limpieza de tanques de agua","Reparación de tanques de agua","Impermeabilización de tanques","Análisis de agua potable"],"contactPoint":[{"@type":"ContactPoint","telephone":"+541130236101","contactType":"customer service","areaServed":"AR","availableLanguage":"es","email":"info@vaxasrl.com.ar"}]}
 </script>
 </head>
 <body>
@@ -57,7 +57,7 @@
       </svg>
     </div>
     <div class="vl-brand"><svg viewBox="0 0 1012 288" role="img" aria-label="VAXA"><use href="#i-logo-vaxa"></use></svg></div>
-    <div class="vl-text" id="vl-text">Preparando el servicio…</div>
+    <div class="vl-text" id="vl-text"></div>
     <div class="vl-bar"><i id="vl-fill"></i></div>
     <div class="vl-tags"><span class="vl-tag vl-tag-fumi">Control de plagas</span><span class="vl-tag vl-tag-tank">Tanques de agua</span></div>
   </div>
@@ -141,7 +141,7 @@
       <a href="faq.html">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a class="btn btn-wa" data-wa="general" href="#">
+      <a class="btn btn-wa" data-wa="general" href="https://wa.me/5491130236101?text=Hola%20VAXA%2C%20los%20contacto%20desde%20la%20web.%20Quiero%20pedir%20un%20presupuesto." target="_blank" rel="noopener">
         <svg><use href="#i-wa"></use></svg> Presupuesto
       </a>
       <button class="btn nav-burger" id="burger" aria-label="Menú"><svg><use href="#i-menu"></use></svg></button>
@@ -200,7 +200,20 @@
           </div>
           <div class="mf-field full">
             <label for="mf-msg">Contanos qué necesitás <span class="req">*</span></label>
-            <textarea id="mf-msg" name="mensaje" placeholder="Ej: edificio de 10 pisos, tanque de 1000 litros, limpieza semestral…" maxlength="2000" required></textarea>
+            <textarea id="mf-msg" name="mensaje" placeholder="Ej: edificio de 10 pisos, tanque de 1000 litros, análisis anual de agua…" maxlength="2000" required></textarea>
+          </div>
+          <div class="mf-field full">
+            <label for="mf-conocio">¿Cómo nos conociste? <span class="opt">(opcional)</span></label>
+            <select id="mf-conocio" name="conocio">
+              <option value="">Elegí una opción</option>
+              <option value="Google">Buscando en Google</option>
+              <option value="Google Maps">Google Maps</option>
+              <option value="Instagram o Facebook">Instagram o Facebook</option>
+              <option value="IA">Me lo recomendó una IA (ChatGPT, Gemini, etc.)</option>
+              <option value="Recomendado">Me lo recomendaron</option>
+              <option value="Cliente anterior">Ya fui cliente</option>
+              <option value="Otro">Otro</option>
+            </select>
           </div>
           <!-- Antispam: campo trampa invisible para personas -->
           <div class="mf-hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
@@ -251,21 +264,24 @@
         <h5>Servicios</h5>
         <a href="servicios.html#fumigacion">Control de plagas</a>
         <a href="servicios.html#fumigacion">Roedores, murciélagos y mosquitos</a>
-        <a href="servicios.html#tanques">Limpieza de tanques</a>
-        <a href="servicios.html#tanques">Reparación de tanques</a>
+        <a href="limpieza-de-tanques.html">Limpieza de tanques</a>
+        <a href="reparacion-de-tanques.html">Reparación de tanques</a>
         <a href="servicios.html#tanques">Impermeabilización</a>
         <a href="servicios.html#tanques">Análisis de agua</a>
       </div>
       <div class="foot-col">
         <h5>Empresa</h5>
+        <a href="consorcios-y-administradores.html">Consorcios y administradores</a>
         <a href="quienes-somos.html">Quiénes somos</a>
         <a href="cobertura.html">Cobertura</a>
         <a href="faq.html">Preguntas frecuentes</a>
       </div>
       <div class="foot-col">
         <h5>Contacto</h5>
-        <a href="tel:+541145823379">+54 11 4582-3379</a>
+        <a href="tel:+541130236101">+54 11 3023-6101</a>
         <a href="mailto:info@vaxasrl.com.ar">info@vaxasrl.com.ar</a>
+        <span class="foot-info">Av. Directorio 3045, Flores, CABA</span>
+        <span class="foot-info">Lun a vie 9 a 17 · Sáb 9 a 12</span>
       </div>
     </div>
     <!-- Habilitación oficial (AGC) -->
@@ -289,7 +305,7 @@
 </footer>
 
 <!-- ============ WHATSAPP FLOTANTE ============ -->
-<a class="wa-float" data-wa="general" href="#" aria-label="Consultar por WhatsApp">
+<a class="wa-float" data-wa="general" href="https://wa.me/5491130236101?text=Hola%20VAXA%2C%20los%20contacto%20desde%20la%20web.%20Quiero%20pedir%20un%20presupuesto." target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
   <span class="wa-pulse"></span>
   <span class="wa-ic"><svg><use href="#i-wa"></use></svg></span>
   <span class="wa-txt">Consultá ahora</span>
@@ -297,19 +313,19 @@
 
 <!-- ============ BARRA FIJA MOBILE (WhatsApp + Llamar) ============ -->
 <div class="mobile-cta" role="group" aria-label="Acciones rápidas">
-  <a class="mcta mcta-call" href="tel:+541145823379" aria-label="Llamar a VAXA">
+  <a class="mcta mcta-call" href="tel:+541130236101" aria-label="Llamar a VAXA">
     <svg><use href="#i-phone"></use></svg>
     <span>Llamar</span>
   </a>
-  <a class="mcta mcta-wa" data-wa="general" href="#" aria-label="Escribir por WhatsApp">
+  <a class="mcta mcta-wa" data-wa="general" href="https://wa.me/5491130236101?text=Hola%20VAXA%2C%20los%20contacto%20desde%20la%20web.%20Quiero%20pedir%20un%20presupuesto." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
     <svg><use href="#i-wa"></use></svg>
     <span>WhatsApp</span>
   </a>
 </div>
 
-<script src="js/config.js?v=20261118" defer></script>
-<script src="js/loader.js?v=20261118" defer></script>
-<script src="js/interactions.js?v=20261118" defer></script>
-<script src="js/tracking.js?v=20261118" defer></script>
-<script src="js/analytics.js?v=20261118" defer></script>
+<script src="js/config.js?v=20261119" defer></script>
+<script src="js/loader.js?v=20261119" defer></script>
+<script src="js/interactions.js?v=20261119" defer></script>
+<script src="js/tracking.js?v=20261119" defer></script>
+<script src="js/analytics.js?v=20261119" defer></script>
 </body></html>
